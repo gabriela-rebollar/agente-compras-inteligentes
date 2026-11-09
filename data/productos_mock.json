@@ -1,0 +1,2009 @@
+{
+  "_descripcion": "Datos SIMULADOS para la demo del Agente para Compras Inteligentes. Precios en pesos mexicanos (MXN) aproximados; reseñas y personalidades son ficticias. Los links llevan a la búsqueda del producto en cada tienda.",
+  "productos": [
+    {
+      "id": "AUD-01",
+      "nombre": "Sony WH-1000XM5",
+      "categoria": "audifonos",
+      "palabras_clave": [
+        "audifonos",
+        "audífonos",
+        "inalambricos",
+        "bluetooth",
+        "auriculares",
+        "diadema",
+        "cancelacion de ruido",
+        "sony"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 6499,
+          "link": "https://www.walmart.com.mx/search?q=Sony+WH-1000XM5"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 5999,
+          "link": "https://www.costco.com.mx/search?text=Sony+WH-1000XM5"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 6199,
+          "link": "https://www.sams.com.mx/search?Ntt=Sony+WH-1000XM5"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 5899,
+          "link": "https://listado.mercadolibre.com.mx/sony-wh-1000xm5"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Carlos M.",
+          "estrellas": 5,
+          "comentario": "La cancelación de ruido es increíble, ideal para el metro y la oficina."
+        },
+        {
+          "autor": "Fernanda R.",
+          "estrellas": 5,
+          "comentario": "Muy cómodos por horas y la batería dura casi 30 horas."
+        },
+        {
+          "autor": "Jorge L.",
+          "estrellas": 4,
+          "comentario": "Excelente sonido, pero el precio es alto y no se pueden doblar."
+        },
+        {
+          "autor": "Ana P.",
+          "estrellas": 4,
+          "comentario": "Llamadas muy claras; la app tiene demasiadas opciones."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "Los nombró 'los mejores audífonos de diadema del año' en su canal."
+        },
+        {
+          "nombre": "Viajero Low Cost",
+          "tipo": "Bloguero de viajes (ficticio)",
+          "comentario": "Los usa en todos sus vuelos largos."
+        }
+      ]
+    },
+    {
+      "id": "AUD-02",
+      "nombre": "Apple AirPods Pro (2da generación)",
+      "categoria": "audifonos",
+      "palabras_clave": [
+        "audifonos",
+        "audífonos",
+        "inalambricos",
+        "bluetooth",
+        "auriculares",
+        "in ear",
+        "apple",
+        "cancelacion de ruido",
+        "airpods"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4999,
+          "link": "https://www.walmart.com.mx/search?q=Apple+AirPods+Pro+%282da+generaci%C3%B3n%29"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 4599,
+          "link": "https://www.costco.com.mx/search?text=Apple+AirPods+Pro+%282da+generaci%C3%B3n%29"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 4699,
+          "link": "https://www.sams.com.mx/search?Ntt=Apple+AirPods+Pro+%282da+generaci%C3%B3n%29"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4399,
+          "link": "https://listado.mercadolibre.com.mx/apple-airpods-pro-%282da-generaci%C3%B3n%29"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Luis G.",
+          "estrellas": 5,
+          "comentario": "Con iPhone se conectan al instante, la cancelación de ruido es muy buena."
+        },
+        {
+          "autor": "Mariana T.",
+          "estrellas": 4,
+          "comentario": "Suenan bien y son pequeños, pero con Android pierdes funciones."
+        },
+        {
+          "autor": "Ricardo S.",
+          "estrellas": 4,
+          "comentario": "El estuche con USB-C es práctico; la batería podría durar más."
+        },
+        {
+          "autor": "Paola V.",
+          "estrellas": 5,
+          "comentario": "El modo ambiente es lo mejor para salir a correr."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "Los recomienda para usuarios de iPhone."
+        },
+        {
+          "nombre": "Corre con Diego",
+          "tipo": "Influencer de fitness (ficticio)",
+          "comentario": "Los usa en sus entrenamientos diarios."
+        }
+      ]
+    },
+    {
+      "id": "AUD-03",
+      "nombre": "JBL Tune 520BT",
+      "categoria": "audifonos",
+      "palabras_clave": [
+        "audifonos",
+        "audífonos",
+        "inalambricos",
+        "bluetooth",
+        "auriculares",
+        "diadema",
+        "jbl",
+        "economicos"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 899,
+          "link": "https://www.walmart.com.mx/search?q=JBL+Tune+520BT"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 849,
+          "link": "https://www.sams.com.mx/search?Ntt=JBL+Tune+520BT"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 799,
+          "link": "https://listado.mercadolibre.com.mx/jbl-tune-520bt"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Diana C.",
+          "estrellas": 4,
+          "comentario": "Por el precio suenan muy bien, buenos bajos."
+        },
+        {
+          "autor": "Héctor N.",
+          "estrellas": 4,
+          "comentario": "La batería dura muchísimo, más de 50 horas."
+        },
+        {
+          "autor": "Sofía A.",
+          "estrellas": 3,
+          "comentario": "Después de un rato aprietan un poco las orejas."
+        },
+        {
+          "autor": "Miguel F.",
+          "estrellas": 4,
+          "comentario": "Ligeros y con buena conexión bluetooth."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "Los sugiere como opción económica para clases en línea."
+        }
+      ]
+    },
+    {
+      "id": "AUD-04",
+      "nombre": "Samsung Galaxy Buds2 Pro",
+      "categoria": "audifonos",
+      "palabras_clave": [
+        "audifonos",
+        "audífonos",
+        "inalambricos",
+        "bluetooth",
+        "auriculares",
+        "in ear",
+        "samsung",
+        "cancelacion de ruido"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 2999,
+          "link": "https://www.walmart.com.mx/search?q=Samsung+Galaxy+Buds2+Pro"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 2799,
+          "link": "https://www.costco.com.mx/search?text=Samsung+Galaxy+Buds2+Pro"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 2599,
+          "link": "https://listado.mercadolibre.com.mx/samsung-galaxy-buds2-pro"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Andrea M.",
+          "estrellas": 5,
+          "comentario": "Con celular Samsung la experiencia es perfecta."
+        },
+        {
+          "autor": "Raúl P.",
+          "estrellas": 4,
+          "comentario": "Sonido claro y buena cancelación de ruido para su precio."
+        },
+        {
+          "autor": "Karla D.",
+          "estrellas": 3,
+          "comentario": "Se me salen un poco al hacer ejercicio."
+        },
+        {
+          "autor": "Iván R.",
+          "estrellas": 4,
+          "comentario": "Muy cómodos y el estuche es pequeño."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "Los considera la mejor relación calidad-precio para Android."
+        }
+      ]
+    },
+    {
+      "id": "AUD-05",
+      "nombre": "Xiaomi Redmi Buds 5",
+      "categoria": "audifonos",
+      "palabras_clave": [
+        "audifonos",
+        "audífonos",
+        "inalambricos",
+        "bluetooth",
+        "auriculares",
+        "in ear",
+        "xiaomi",
+        "economicos"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 599,
+          "link": "https://www.walmart.com.mx/search?q=Xiaomi+Redmi+Buds+5"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 499,
+          "link": "https://listado.mercadolibre.com.mx/xiaomi-redmi-buds-5"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Pedro H.",
+          "estrellas": 4,
+          "comentario": "Increíble que tengan cancelación de ruido a este precio."
+        },
+        {
+          "autor": "Laura E.",
+          "estrellas": 3,
+          "comentario": "El micrófono es regular para llamadas."
+        },
+        {
+          "autor": "Óscar V.",
+          "estrellas": 4,
+          "comentario": "Buena batería y se conectan rápido."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Viajero Low Cost",
+          "tipo": "Bloguero de viajes (ficticio)",
+          "comentario": "Los recomienda como audífonos de repuesto para viajes."
+        }
+      ]
+    },
+    {
+      "id": "TV-01",
+      "nombre": "Samsung Smart TV 55\" Crystal UHD 4K",
+      "categoria": "pantallas",
+      "palabras_clave": [
+        "pantalla",
+        "television",
+        "televisión",
+        "tv",
+        "smart tv",
+        "televisor",
+        "55 pulgadas",
+        "4k",
+        "samsung"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 8999,
+          "link": "https://www.walmart.com.mx/search?q=Samsung+Smart+TV+55%22+Crystal+UHD+4K"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 8499,
+          "link": "https://www.costco.com.mx/search?text=Samsung+Smart+TV+55%22+Crystal+UHD+4K"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 8599,
+          "link": "https://www.sams.com.mx/search?Ntt=Samsung+Smart+TV+55%22+Crystal+UHD+4K"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 8799,
+          "link": "https://listado.mercadolibre.com.mx/samsung-smart-tv-55-crystal-uhd-4k"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Roberto J.",
+          "estrellas": 5,
+          "comentario": "Imagen muy nítida y el sistema Tizen es rápido."
+        },
+        {
+          "autor": "Claudia B.",
+          "estrellas": 4,
+          "comentario": "Buena calidad, aunque el sonido es algo plano."
+        },
+        {
+          "autor": "Ernesto Q.",
+          "estrellas": 4,
+          "comentario": "Fácil de instalar y trae las apps principales."
+        },
+        {
+          "autor": "Gabriela O.",
+          "estrellas": 5,
+          "comentario": "Excelente para ver futbol, los colores se ven muy bien."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Arquitecta Sofi",
+          "tipo": "Diseñadora de interiores (ficticia)",
+          "comentario": "La recomienda por su diseño delgado para salas modernas."
+        }
+      ]
+    },
+    {
+      "id": "TV-02",
+      "nombre": "LG Smart TV 50\" UHD 4K ThinQ",
+      "categoria": "pantallas",
+      "palabras_clave": [
+        "pantalla",
+        "television",
+        "televisión",
+        "tv",
+        "smart tv",
+        "televisor",
+        "50 pulgadas",
+        "4k",
+        "lg"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 7499,
+          "link": "https://www.walmart.com.mx/search?q=LG+Smart+TV+50%22+UHD+4K+ThinQ"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 7199,
+          "link": "https://www.sams.com.mx/search?Ntt=LG+Smart+TV+50%22+UHD+4K+ThinQ"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 6999,
+          "link": "https://listado.mercadolibre.com.mx/lg-smart-tv-50-uhd-4k-thinq"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Tomás I.",
+          "estrellas": 4,
+          "comentario": "El control mágico es muy cómodo."
+        },
+        {
+          "autor": "Verónica L.",
+          "estrellas": 4,
+          "comentario": "Buena imagen, el negro no es tan profundo."
+        },
+        {
+          "autor": "Samuel K.",
+          "estrellas": 5,
+          "comentario": "WebOS es muy intuitivo, mis papás la usan sin problema."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La usa en el cuarto de sus hijos por el control parental."
+        }
+      ]
+    },
+    {
+      "id": "TV-03",
+      "nombre": "Hisense Smart TV 43\" 4K VIDAA",
+      "categoria": "pantallas",
+      "palabras_clave": [
+        "pantalla",
+        "television",
+        "televisión",
+        "tv",
+        "smart tv",
+        "televisor",
+        "43 pulgadas",
+        "4k",
+        "hisense",
+        "economica"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4999,
+          "link": "https://www.walmart.com.mx/search?q=Hisense+Smart+TV+43%22+4K+VIDAA"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 4799,
+          "link": "https://www.sams.com.mx/search?Ntt=Hisense+Smart+TV+43%22+4K+VIDAA"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4599,
+          "link": "https://listado.mercadolibre.com.mx/hisense-smart-tv-43-4k-vidaa"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Alicia N.",
+          "estrellas": 4,
+          "comentario": "Por el precio cumple muy bien para una recámara."
+        },
+        {
+          "autor": "Bruno T.",
+          "estrellas": 3,
+          "comentario": "El sistema VIDAA tiene menos apps que otros."
+        },
+        {
+          "autor": "Cecilia M.",
+          "estrellas": 4,
+          "comentario": "Buena imagen y bajo consumo de luz."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "La sugiere como monitor grande para dar clases en casa."
+        }
+      ]
+    },
+    {
+      "id": "TV-04",
+      "nombre": "TCL Smart TV 65\" QLED Google TV",
+      "categoria": "pantallas",
+      "palabras_clave": [
+        "pantalla",
+        "television",
+        "televisión",
+        "tv",
+        "smart tv",
+        "televisor",
+        "65 pulgadas",
+        "qled",
+        "4k",
+        "tcl"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 11999,
+          "link": "https://www.walmart.com.mx/search?q=TCL+Smart+TV+65%22+QLED+Google+TV"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 10999,
+          "link": "https://www.costco.com.mx/search?text=TCL+Smart+TV+65%22+QLED+Google+TV"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 11299,
+          "link": "https://www.sams.com.mx/search?Ntt=TCL+Smart+TV+65%22+QLED+Google+TV"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 11499,
+          "link": "https://listado.mercadolibre.com.mx/tcl-smart-tv-65-qled-google-tv"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Daniel A.",
+          "estrellas": 5,
+          "comentario": "Una pantalla enorme con QLED a muy buen precio."
+        },
+        {
+          "autor": "Elena G.",
+          "estrellas": 4,
+          "comentario": "Google TV funciona muy bien, a veces se traba un poco."
+        },
+        {
+          "autor": "Francisco S.",
+          "estrellas": 5,
+          "comentario": "Para videojuegos se ve espectacular."
+        },
+        {
+          "autor": "Irene P.",
+          "estrellas": 4,
+          "comentario": "Los colores son muy vivos; el sonido requiere barra."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "GamerZone Andrés",
+          "tipo": "Streamer de videojuegos (ficticio)",
+          "comentario": "La usa con su consola en las transmisiones de fin de semana."
+        }
+      ]
+    },
+    {
+      "id": "CEL-01",
+      "nombre": "Samsung Galaxy A55 5G 256GB",
+      "categoria": "celulares",
+      "palabras_clave": [
+        "celular",
+        "smartphone",
+        "telefono",
+        "teléfono",
+        "movil",
+        "samsung",
+        "5g",
+        "android"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 7999,
+          "link": "https://www.walmart.com.mx/search?q=Samsung+Galaxy+A55+5G+256GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 7499,
+          "link": "https://www.costco.com.mx/search?text=Samsung+Galaxy+A55+5G+256GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 7599,
+          "link": "https://www.sams.com.mx/search?Ntt=Samsung+Galaxy+A55+5G+256GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 7299,
+          "link": "https://listado.mercadolibre.com.mx/samsung-galaxy-a55-5g-256gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Patricia R.",
+          "estrellas": 5,
+          "comentario": "La batería dura todo el día y la cámara es muy buena."
+        },
+        {
+          "autor": "Alberto C.",
+          "estrellas": 4,
+          "comentario": "Pantalla excelente, se calienta un poco al jugar."
+        },
+        {
+          "autor": "Lucía F.",
+          "estrellas": 4,
+          "comentario": "Recibe actualizaciones por varios años, eso me convenció."
+        },
+        {
+          "autor": "Mauricio G.",
+          "estrellas": 4,
+          "comentario": "Buen diseño y resistente al agua."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "Lo considera el mejor gama media del año."
+        }
+      ]
+    },
+    {
+      "id": "CEL-02",
+      "nombre": "iPhone 15 128GB",
+      "categoria": "celulares",
+      "palabras_clave": [
+        "celular",
+        "smartphone",
+        "telefono",
+        "teléfono",
+        "movil",
+        "apple",
+        "iphone",
+        "ios"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 16999,
+          "link": "https://www.walmart.com.mx/search?q=iPhone+15+128GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 15999,
+          "link": "https://www.costco.com.mx/search?text=iPhone+15+128GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 16299,
+          "link": "https://www.sams.com.mx/search?Ntt=iPhone+15+128GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 15499,
+          "link": "https://listado.mercadolibre.com.mx/iphone-15-128gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Valeria S.",
+          "estrellas": 5,
+          "comentario": "Las fotos son espectaculares y el USB-C es muy práctico."
+        },
+        {
+          "autor": "Jesús M.",
+          "estrellas": 5,
+          "comentario": "Fluido y muy bien hecho."
+        },
+        {
+          "autor": "Natalia H.",
+          "estrellas": 4,
+          "comentario": "Excelente, pero 128GB se llenan rápido."
+        },
+        {
+          "autor": "Arturo B.",
+          "estrellas": 3,
+          "comentario": "Muy caro para lo que cambió respecto al anterior."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Viajero Low Cost",
+          "tipo": "Bloguero de viajes (ficticio)",
+          "comentario": "Lo usa para grabar todos sus videos de viaje."
+        },
+        {
+          "nombre": "Chef Lupita en Casa",
+          "tipo": "Creadora de contenido de cocina (ficticia)",
+          "comentario": "Graba sus recetas con él."
+        }
+      ]
+    },
+    {
+      "id": "CEL-03",
+      "nombre": "Motorola Moto G84 5G 256GB",
+      "categoria": "celulares",
+      "palabras_clave": [
+        "celular",
+        "smartphone",
+        "telefono",
+        "teléfono",
+        "movil",
+        "motorola",
+        "5g",
+        "android",
+        "economico"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4999,
+          "link": "https://www.walmart.com.mx/search?q=Motorola+Moto+G84+5G+256GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 4799,
+          "link": "https://www.sams.com.mx/search?Ntt=Motorola+Moto+G84+5G+256GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4499,
+          "link": "https://listado.mercadolibre.com.mx/motorola-moto-g84-5g-256gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Gerardo P.",
+          "estrellas": 4,
+          "comentario": "Mucho almacenamiento por el precio."
+        },
+        {
+          "autor": "Rocío A.",
+          "estrellas": 4,
+          "comentario": "Android limpio, sin tantas apps basura."
+        },
+        {
+          "autor": "Emilio D.",
+          "estrellas": 3,
+          "comentario": "La cámara de noche es regular."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "Lo recomienda a estudiantes por su precio."
+        }
+      ]
+    },
+    {
+      "id": "CEL-04",
+      "nombre": "Xiaomi Redmi Note 13 Pro 256GB",
+      "categoria": "celulares",
+      "palabras_clave": [
+        "celular",
+        "smartphone",
+        "telefono",
+        "teléfono",
+        "movil",
+        "xiaomi",
+        "redmi",
+        "android"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 6499,
+          "link": "https://www.walmart.com.mx/search?q=Xiaomi+Redmi+Note+13+Pro+256GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 6199,
+          "link": "https://www.sams.com.mx/search?Ntt=Xiaomi+Redmi+Note+13+Pro+256GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 5799,
+          "link": "https://listado.mercadolibre.com.mx/xiaomi-redmi-note-13-pro-256gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Brenda L.",
+          "estrellas": 5,
+          "comentario": "La cámara de 200MP sorprende."
+        },
+        {
+          "autor": "Hugo S.",
+          "estrellas": 4,
+          "comentario": "Carga rapidísimo."
+        },
+        {
+          "autor": "Camila V.",
+          "estrellas": 3,
+          "comentario": "Trae publicidad en algunas apps del sistema."
+        },
+        {
+          "autor": "Manuel O.",
+          "estrellas": 4,
+          "comentario": "Pantalla AMOLED muy brillante."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "Lo destacó por su cámara en su comparativa de gama media."
+        }
+      ]
+    },
+    {
+      "id": "LAP-01",
+      "nombre": "HP Laptop 15\" Ryzen 5 16GB 512GB",
+      "categoria": "laptops",
+      "palabras_clave": [
+        "laptop",
+        "computadora",
+        "portatil",
+        "notebook",
+        "hp",
+        "ryzen",
+        "15 pulgadas"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 11999,
+          "link": "https://www.walmart.com.mx/search?q=HP+Laptop+15%22+Ryzen+5+16GB+512GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 11499,
+          "link": "https://www.costco.com.mx/search?text=HP+Laptop+15%22+Ryzen+5+16GB+512GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 11299,
+          "link": "https://www.sams.com.mx/search?Ntt=HP+Laptop+15%22+Ryzen+5+16GB+512GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 11799,
+          "link": "https://listado.mercadolibre.com.mx/hp-laptop-15-ryzen-5-16gb-512gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Ximena T.",
+          "estrellas": 4,
+          "comentario": "Rápida para la escuela y trabajo de oficina."
+        },
+        {
+          "autor": "Adrián C.",
+          "estrellas": 4,
+          "comentario": "16GB de RAM hacen la diferencia."
+        },
+        {
+          "autor": "Mónica E.",
+          "estrellas": 3,
+          "comentario": "La pantalla podría tener más brillo."
+        },
+        {
+          "autor": "Sergio R.",
+          "estrellas": 4,
+          "comentario": "Buena batería, unas 7 horas."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "La recomienda para estudiantes universitarios."
+        }
+      ]
+    },
+    {
+      "id": "LAP-02",
+      "nombre": "Lenovo IdeaPad Slim 3 Core i5",
+      "categoria": "laptops",
+      "palabras_clave": [
+        "laptop",
+        "computadora",
+        "portatil",
+        "notebook",
+        "lenovo",
+        "intel",
+        "core i5",
+        "ligera"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 12499,
+          "link": "https://www.walmart.com.mx/search?q=Lenovo+IdeaPad+Slim+3+Core+i5"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 11999,
+          "link": "https://www.costco.com.mx/search?text=Lenovo+IdeaPad+Slim+3+Core+i5"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 11699,
+          "link": "https://listado.mercadolibre.com.mx/lenovo-ideapad-slim-3-core-i5"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Diego N.",
+          "estrellas": 5,
+          "comentario": "Muy ligera y el teclado es cómodo."
+        },
+        {
+          "autor": "Tania F.",
+          "estrellas": 4,
+          "comentario": "Ideal para home office."
+        },
+        {
+          "autor": "Rubén A.",
+          "estrellas": 4,
+          "comentario": "Enciende rapidísimo con el SSD."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Viajero Low Cost",
+          "tipo": "Bloguero de viajes (ficticio)",
+          "comentario": "La lleva para trabajar mientras viaja por su poco peso."
+        }
+      ]
+    },
+    {
+      "id": "LAP-03",
+      "nombre": "Apple MacBook Air M2 13\" 256GB",
+      "categoria": "laptops",
+      "palabras_clave": [
+        "laptop",
+        "computadora",
+        "portatil",
+        "notebook",
+        "apple",
+        "macbook",
+        "m2"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 19999,
+          "link": "https://www.walmart.com.mx/search?q=Apple+MacBook+Air+M2+13%22+256GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 18999,
+          "link": "https://www.costco.com.mx/search?text=Apple+MacBook+Air+M2+13%22+256GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 19299,
+          "link": "https://www.sams.com.mx/search?Ntt=Apple+MacBook+Air+M2+13%22+256GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 18499,
+          "link": "https://listado.mercadolibre.com.mx/apple-macbook-air-m2-13-256gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Isabel R.",
+          "estrellas": 5,
+          "comentario": "La batería dura más de 15 horas, increíble."
+        },
+        {
+          "autor": "Pablo M.",
+          "estrellas": 5,
+          "comentario": "Silenciosa porque no tiene ventilador, muy fluida."
+        },
+        {
+          "autor": "Lorena G.",
+          "estrellas": 4,
+          "comentario": "Excelente, pero 256GB es poco almacenamiento."
+        },
+        {
+          "autor": "Andrés V.",
+          "estrellas": 4,
+          "comentario": "Perfecta para diseño ligero y programación."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Arquitecta Sofi",
+          "tipo": "Diseñadora de interiores (ficticia)",
+          "comentario": "La usa para sus presentaciones con clientes."
+        },
+        {
+          "nombre": "Beats de Barrio",
+          "tipo": "Productor musical (ficticio)",
+          "comentario": "Produce sus maquetas en ella."
+        }
+      ]
+    },
+    {
+      "id": "LAP-04",
+      "nombre": "Acer Aspire 5 Core i7 16GB",
+      "categoria": "laptops",
+      "palabras_clave": [
+        "laptop",
+        "computadora",
+        "portatil",
+        "notebook",
+        "acer",
+        "intel",
+        "core i7"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 14999,
+          "link": "https://www.walmart.com.mx/search?q=Acer+Aspire+5+Core+i7+16GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 14499,
+          "link": "https://www.sams.com.mx/search?Ntt=Acer+Aspire+5+Core+i7+16GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 14299,
+          "link": "https://listado.mercadolibre.com.mx/acer-aspire-5-core-i7-16gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Esteban L.",
+          "estrellas": 4,
+          "comentario": "Potente para programar y editar fotos."
+        },
+        {
+          "autor": "Fabiola Q.",
+          "estrellas": 3,
+          "comentario": "Se calienta con tareas pesadas."
+        },
+        {
+          "autor": "Gustavo P.",
+          "estrellas": 4,
+          "comentario": "Buena relación precio-rendimiento."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "La sugiere para carreras de ingeniería."
+        }
+      ]
+    },
+    {
+      "id": "FRE-01",
+      "nombre": "Ninja Air Fryer AF101 3.8L",
+      "categoria": "freidoras de aire",
+      "palabras_clave": [
+        "freidora",
+        "freidora de aire",
+        "air fryer",
+        "cocina",
+        "ninja",
+        "3.8 litros"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 2299,
+          "link": "https://www.walmart.com.mx/search?q=Ninja+Air+Fryer+AF101+3.8L"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 1999,
+          "link": "https://www.costco.com.mx/search?text=Ninja+Air+Fryer+AF101+3.8L"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 2099,
+          "link": "https://www.sams.com.mx/search?Ntt=Ninja+Air+Fryer+AF101+3.8L"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 2199,
+          "link": "https://listado.mercadolibre.com.mx/ninja-air-fryer-af101-3.8l"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Rosa M.",
+          "estrellas": 5,
+          "comentario": "Las papas quedan crujientes sin casi nada de aceite."
+        },
+        {
+          "autor": "Javier T.",
+          "estrellas": 5,
+          "comentario": "Fácil de limpiar, la canastilla es antiadherente."
+        },
+        {
+          "autor": "Leticia C.",
+          "estrellas": 4,
+          "comentario": "Es algo pequeña para familias de más de 4."
+        },
+        {
+          "autor": "Ramón G.",
+          "estrellas": 5,
+          "comentario": "La uso todos los días, súper práctica."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Chef Lupita en Casa",
+          "tipo": "Creadora de contenido de cocina (ficticia)",
+          "comentario": "Es su freidora favorita en sus videos de recetas rápidas."
+        },
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La recomienda para comidas saludables para niños."
+        }
+      ]
+    },
+    {
+      "id": "FRE-02",
+      "nombre": "Oster Freidora de aire 4L digital",
+      "categoria": "freidoras de aire",
+      "palabras_clave": [
+        "freidora",
+        "freidora de aire",
+        "air fryer",
+        "cocina",
+        "oster",
+        "4 litros",
+        "digital"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 1499,
+          "link": "https://www.walmart.com.mx/search?q=Oster+Freidora+de+aire+4L+digital"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 1399,
+          "link": "https://www.sams.com.mx/search?Ntt=Oster+Freidora+de+aire+4L+digital"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 1349,
+          "link": "https://listado.mercadolibre.com.mx/oster-freidora-de-aire-4l-digital"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Silvia P.",
+          "estrellas": 4,
+          "comentario": "Buena por el precio, los programas son útiles."
+        },
+        {
+          "autor": "Marco A.",
+          "estrellas": 3,
+          "comentario": "El recubrimiento se empezó a desgastar a los meses."
+        },
+        {
+          "autor": "Teresa L.",
+          "estrellas": 4,
+          "comentario": "Calienta rápido y es silenciosa."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La sugiere como primera freidora por su precio."
+        }
+      ]
+    },
+    {
+      "id": "FRE-03",
+      "nombre": "Cosori Freidora de aire 5.5L",
+      "categoria": "freidoras de aire",
+      "palabras_clave": [
+        "freidora",
+        "freidora de aire",
+        "air fryer",
+        "cocina",
+        "cosori",
+        "5.5 litros",
+        "grande"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 2699,
+          "link": "https://www.walmart.com.mx/search?q=Cosori+Freidora+de+aire+5.5L"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 2599,
+          "link": "https://www.costco.com.mx/search?text=Cosori+Freidora+de+aire+5.5L"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 2399,
+          "link": "https://listado.mercadolibre.com.mx/cosori-freidora-de-aire-5.5l"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Norma V.",
+          "estrellas": 5,
+          "comentario": "Grande, cabe un pollo entero."
+        },
+        {
+          "autor": "Felipe R.",
+          "estrellas": 4,
+          "comentario": "Muy buena, la app es opcional."
+        },
+        {
+          "autor": "Adriana S.",
+          "estrellas": 5,
+          "comentario": "Cocina parejo y la canasta es fácil de lavar."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Chef Lupita en Casa",
+          "tipo": "Creadora de contenido de cocina (ficticia)",
+          "comentario": "La usa para recetas familiares grandes."
+        }
+      ]
+    },
+    {
+      "id": "CAF-01",
+      "nombre": "Nespresso Vertuo Pop",
+      "categoria": "cafeteras",
+      "palabras_clave": [
+        "cafetera",
+        "cafe",
+        "café",
+        "cocina",
+        "nespresso",
+        "capsulas",
+        "espresso"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 2999,
+          "link": "https://www.walmart.com.mx/search?q=Nespresso+Vertuo+Pop"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 2699,
+          "link": "https://www.costco.com.mx/search?text=Nespresso+Vertuo+Pop"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 2799,
+          "link": "https://www.sams.com.mx/search?Ntt=Nespresso+Vertuo+Pop"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 2899,
+          "link": "https://listado.mercadolibre.com.mx/nespresso-vertuo-pop"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Joaquín M.",
+          "estrellas": 5,
+          "comentario": "Café de cafetería en un minuto."
+        },
+        {
+          "autor": "Beatriz H.",
+          "estrellas": 4,
+          "comentario": "Excelente, pero las cápsulas son caras."
+        },
+        {
+          "autor": "Rodrigo F.",
+          "estrellas": 4,
+          "comentario": "Compacta y bonita para la cocina."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Arquitecta Sofi",
+          "tipo": "Diseñadora de interiores (ficticia)",
+          "comentario": "La recomienda por su diseño para cocinas pequeñas."
+        }
+      ]
+    },
+    {
+      "id": "CAF-02",
+      "nombre": "Mr. Coffee Cafetera 12 tazas",
+      "categoria": "cafeteras",
+      "palabras_clave": [
+        "cafetera",
+        "cafe",
+        "café",
+        "cocina",
+        "mr coffee",
+        "goteo",
+        "economica"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 699,
+          "link": "https://www.walmart.com.mx/search?q=Mr.+Coffee+Cafetera+12+tazas"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 649,
+          "link": "https://www.sams.com.mx/search?Ntt=Mr.+Coffee+Cafetera+12+tazas"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 629,
+          "link": "https://listado.mercadolibre.com.mx/mr.-coffee-cafetera-12-tazas"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Guadalupe R.",
+          "estrellas": 4,
+          "comentario": "Sencilla y hace mucho café para la familia."
+        },
+        {
+          "autor": "Enrique S.",
+          "estrellas": 4,
+          "comentario": "Barata y cumple."
+        },
+        {
+          "autor": "Marisol D.",
+          "estrellas": 3,
+          "comentario": "La jarra se mancha con el tiempo."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La usa para las reuniones familiares de domingo."
+        }
+      ]
+    },
+    {
+      "id": "CAF-03",
+      "nombre": "Nescafé Dolce Gusto Genio S Plus",
+      "categoria": "cafeteras",
+      "palabras_clave": [
+        "cafetera",
+        "cafe",
+        "café",
+        "cocina",
+        "dolce gusto",
+        "capsulas"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 2499,
+          "link": "https://www.walmart.com.mx/search?q=Nescaf%C3%A9+Dolce+Gusto+Genio+S+Plus"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 2299,
+          "link": "https://www.sams.com.mx/search?Ntt=Nescaf%C3%A9+Dolce+Gusto+Genio+S+Plus"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 2199,
+          "link": "https://listado.mercadolibre.com.mx/nescaf%C3%A9-dolce-gusto-genio-s-plus"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Liliana T.",
+          "estrellas": 4,
+          "comentario": "Muchas variedades de bebidas, incluso chocolate."
+        },
+        {
+          "autor": "Octavio B.",
+          "estrellas": 4,
+          "comentario": "Fácil de usar y de limpiar."
+        },
+        {
+          "autor": "Pilar N.",
+          "estrellas": 3,
+          "comentario": "Las cápsulas se agotan rápido en las tiendas."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Chef Lupita en Casa",
+          "tipo": "Creadora de contenido de cocina (ficticia)",
+          "comentario": "La usa para preparar postres con café."
+        }
+      ]
+    },
+    {
+      "id": "ASP-01",
+      "nombre": "iRobot Roomba Combo i5",
+      "categoria": "aspiradoras",
+      "palabras_clave": [
+        "aspiradora",
+        "limpieza",
+        "hogar",
+        "robot",
+        "roomba",
+        "trapeadora",
+        "irobot"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 7999,
+          "link": "https://www.walmart.com.mx/search?q=iRobot+Roomba+Combo+i5"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 7499,
+          "link": "https://www.costco.com.mx/search?text=iRobot+Roomba+Combo+i5"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 7599,
+          "link": "https://www.sams.com.mx/search?Ntt=iRobot+Roomba+Combo+i5"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 7299,
+          "link": "https://listado.mercadolibre.com.mx/irobot-roomba-combo-i5"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Fernando L.",
+          "estrellas": 4,
+          "comentario": "Aspira y trapea, me ahorra mucho tiempo."
+        },
+        {
+          "autor": "Carmen O.",
+          "estrellas": 4,
+          "comentario": "La app es fácil, se atora con cables."
+        },
+        {
+          "autor": "Alfredo M.",
+          "estrellas": 3,
+          "comentario": "En alfombras gruesas batalla un poco."
+        },
+        {
+          "autor": "Diana V.",
+          "estrellas": 5,
+          "comentario": "Perfecta con mascotas, recoge mucho pelo."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La recomienda para familias con mascotas."
+        }
+      ]
+    },
+    {
+      "id": "ASP-02",
+      "nombre": "Xiaomi Robot Vacuum S10",
+      "categoria": "aspiradoras",
+      "palabras_clave": [
+        "aspiradora",
+        "limpieza",
+        "hogar",
+        "robot",
+        "xiaomi",
+        "economica"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4999,
+          "link": "https://www.walmart.com.mx/search?q=Xiaomi+Robot+Vacuum+S10"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 4699,
+          "link": "https://www.sams.com.mx/search?Ntt=Xiaomi+Robot+Vacuum+S10"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4299,
+          "link": "https://listado.mercadolibre.com.mx/xiaomi-robot-vacuum-s10"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Ulises G.",
+          "estrellas": 4,
+          "comentario": "El mapeo láser es muy preciso."
+        },
+        {
+          "autor": "Rebeca A.",
+          "estrellas": 4,
+          "comentario": "Buena succión por el precio."
+        },
+        {
+          "autor": "Mario C.",
+          "estrellas": 4,
+          "comentario": "Silenciosa y la app funciona bien."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "TecnoReseñas MX",
+          "tipo": "YouTuber de tecnología (ficticio)",
+          "comentario": "La eligió como la mejor aspiradora robot económica."
+        }
+      ]
+    },
+    {
+      "id": "ASP-03",
+      "nombre": "Dyson V8 Absolute",
+      "categoria": "aspiradoras",
+      "palabras_clave": [
+        "aspiradora",
+        "limpieza",
+        "hogar",
+        "dyson",
+        "inalambrica",
+        "vertical"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 9999,
+          "link": "https://www.walmart.com.mx/search?q=Dyson+V8+Absolute"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 9299,
+          "link": "https://www.costco.com.mx/search?text=Dyson+V8+Absolute"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 9499,
+          "link": "https://listado.mercadolibre.com.mx/dyson-v8-absolute"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Sara K.",
+          "estrellas": 5,
+          "comentario": "Potentísima y ligera."
+        },
+        {
+          "autor": "Leonardo P.",
+          "estrellas": 4,
+          "comentario": "La batería dura unos 40 minutos."
+        },
+        {
+          "autor": "Julia E.",
+          "estrellas": 4,
+          "comentario": "Excelente, pero el precio es alto."
+        },
+        {
+          "autor": "Raquel S.",
+          "estrellas": 5,
+          "comentario": "Ideal para limpiar el coche también."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Arquitecta Sofi",
+          "tipo": "Diseñadora de interiores (ficticia)",
+          "comentario": "La usa para mantener impecables sus proyectos de interiorismo."
+        }
+      ]
+    },
+    {
+      "id": "SMW-01",
+      "nombre": "Apple Watch SE (2da generación) 40mm",
+      "categoria": "smartwatches",
+      "palabras_clave": [
+        "smartwatch",
+        "reloj",
+        "reloj inteligente",
+        "pulsera",
+        "apple",
+        "apple watch"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 5499,
+          "link": "https://www.walmart.com.mx/search?q=Apple+Watch+SE+%282da+generaci%C3%B3n%29+40mm"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 4999,
+          "link": "https://www.costco.com.mx/search?text=Apple+Watch+SE+%282da+generaci%C3%B3n%29+40mm"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 5199,
+          "link": "https://www.sams.com.mx/search?Ntt=Apple+Watch+SE+%282da+generaci%C3%B3n%29+40mm"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4899,
+          "link": "https://listado.mercadolibre.com.mx/apple-watch-se-%282da-generaci%C3%B3n%29-40mm"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Cristina M.",
+          "estrellas": 5,
+          "comentario": "Perfecto para medir mis entrenamientos."
+        },
+        {
+          "autor": "Alejandro R.",
+          "estrellas": 4,
+          "comentario": "La batería solo dura un día."
+        },
+        {
+          "autor": "Mónica P.",
+          "estrellas": 5,
+          "comentario": "La detección de caídas me da tranquilidad para mi mamá."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Corre con Diego",
+          "tipo": "Influencer de fitness (ficticio)",
+          "comentario": "Lo usa para medir sus carreras de 10K."
+        }
+      ]
+    },
+    {
+      "id": "SMW-02",
+      "nombre": "Samsung Galaxy Watch6 40mm",
+      "categoria": "smartwatches",
+      "palabras_clave": [
+        "smartwatch",
+        "reloj",
+        "reloj inteligente",
+        "pulsera",
+        "samsung",
+        "galaxy watch"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4999,
+          "link": "https://www.walmart.com.mx/search?q=Samsung+Galaxy+Watch6+40mm"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 4599,
+          "link": "https://www.costco.com.mx/search?text=Samsung+Galaxy+Watch6+40mm"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 4299,
+          "link": "https://listado.mercadolibre.com.mx/samsung-galaxy-watch6-40mm"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Eduardo F.",
+          "estrellas": 4,
+          "comentario": "Mide sueño y estrés muy bien."
+        },
+        {
+          "autor": "Rosario T.",
+          "estrellas": 4,
+          "comentario": "Bonito diseño, la batería dura día y medio."
+        },
+        {
+          "autor": "Iker N.",
+          "estrellas": 3,
+          "comentario": "Algunas funciones solo sirven con celular Samsung."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Corre con Diego",
+          "tipo": "Influencer de fitness (ficticio)",
+          "comentario": "Lo recomienda a usuarios de Android."
+        }
+      ]
+    },
+    {
+      "id": "SMW-03",
+      "nombre": "Xiaomi Smart Band 8",
+      "categoria": "smartwatches",
+      "palabras_clave": [
+        "smartwatch",
+        "reloj",
+        "reloj inteligente",
+        "pulsera",
+        "xiaomi",
+        "pulsera",
+        "economica"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 899,
+          "link": "https://www.walmart.com.mx/search?q=Xiaomi+Smart+Band+8"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 849,
+          "link": "https://www.sams.com.mx/search?Ntt=Xiaomi+Smart+Band+8"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 699,
+          "link": "https://listado.mercadolibre.com.mx/xiaomi-smart-band-8"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Fátima L.",
+          "estrellas": 5,
+          "comentario": "La batería dura dos semanas."
+        },
+        {
+          "autor": "Gonzalo R.",
+          "estrellas": 4,
+          "comentario": "Ligera y cómoda para dormir."
+        },
+        {
+          "autor": "Itzel M.",
+          "estrellas": 4,
+          "comentario": "Muy buena para contar pasos por su precio."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Corre con Diego",
+          "tipo": "Influencer de fitness (ficticio)",
+          "comentario": "La sugiere como primera pulsera para empezar a hacer ejercicio."
+        }
+      ]
+    },
+    {
+      "id": "CON-01",
+      "nombre": "Nintendo Switch OLED",
+      "categoria": "consolas",
+      "palabras_clave": [
+        "consola",
+        "videojuegos",
+        "gaming",
+        "nintendo",
+        "switch",
+        "portatil"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 7999,
+          "link": "https://www.walmart.com.mx/search?q=Nintendo+Switch+OLED"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 7599,
+          "link": "https://www.costco.com.mx/search?text=Nintendo+Switch+OLED"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 7699,
+          "link": "https://www.sams.com.mx/search?Ntt=Nintendo+Switch+OLED"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 7499,
+          "link": "https://listado.mercadolibre.com.mx/nintendo-switch-oled"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Santiago H.",
+          "estrellas": 5,
+          "comentario": "La pantalla OLED se ve hermosa."
+        },
+        {
+          "autor": "Renata C.",
+          "estrellas": 5,
+          "comentario": "Ideal para jugar en familia."
+        },
+        {
+          "autor": "Axel V.",
+          "estrellas": 4,
+          "comentario": "Los juegos son caros, pero la consola vale la pena."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "GamerZone Andrés",
+          "tipo": "Streamer de videojuegos (ficticio)",
+          "comentario": "Es su consola para transmisiones de juegos familiares."
+        },
+        {
+          "nombre": "Mamá Práctica",
+          "tipo": "Influencer de hogar y familia (ficticia)",
+          "comentario": "La recomienda para jugar en familia."
+        }
+      ]
+    },
+    {
+      "id": "CON-02",
+      "nombre": "PlayStation 5 Slim",
+      "categoria": "consolas",
+      "palabras_clave": [
+        "consola",
+        "videojuegos",
+        "gaming",
+        "playstation",
+        "ps5",
+        "sony"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 10999,
+          "link": "https://www.walmart.com.mx/search?q=PlayStation+5+Slim"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 10499,
+          "link": "https://www.costco.com.mx/search?text=PlayStation+5+Slim"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 10599,
+          "link": "https://www.sams.com.mx/search?Ntt=PlayStation+5+Slim"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 10299,
+          "link": "https://listado.mercadolibre.com.mx/playstation-5-slim"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Kevin O.",
+          "estrellas": 5,
+          "comentario": "Carga los juegos en segundos."
+        },
+        {
+          "autor": "Daniela F.",
+          "estrellas": 5,
+          "comentario": "Los gráficos son impresionantes."
+        },
+        {
+          "autor": "Rogelio M.",
+          "estrellas": 4,
+          "comentario": "Más pequeña que la original, el almacenamiento se llena rápido."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "GamerZone Andrés",
+          "tipo": "Streamer de videojuegos (ficticio)",
+          "comentario": "Es su consola principal para streams."
+        }
+      ]
+    },
+    {
+      "id": "TAB-01",
+      "nombre": "Samsung Galaxy Tab A9+ 64GB",
+      "categoria": "tablets",
+      "palabras_clave": [
+        "tablet",
+        "tableta",
+        "samsung",
+        "android",
+        "economica"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 4499,
+          "link": "https://www.walmart.com.mx/search?q=Samsung+Galaxy+Tab+A9%2B+64GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 3999,
+          "link": "https://www.costco.com.mx/search?text=Samsung+Galaxy+Tab+A9%2B+64GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 4199,
+          "link": "https://www.sams.com.mx/search?Ntt=Samsung+Galaxy+Tab+A9%2B+64GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 3899,
+          "link": "https://listado.mercadolibre.com.mx/samsung-galaxy-tab-a9%2B-64gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Jimena R.",
+          "estrellas": 4,
+          "comentario": "Buena pantalla para ver series."
+        },
+        {
+          "autor": "Omar L.",
+          "estrellas": 4,
+          "comentario": "Ideal para los niños y la escuela."
+        },
+        {
+          "autor": "Estela G.",
+          "estrellas": 3,
+          "comentario": "64GB se quedan cortos."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "La recomienda para tareas escolares."
+        }
+      ]
+    },
+    {
+      "id": "TAB-02",
+      "nombre": "Apple iPad (10ma generación) 64GB",
+      "categoria": "tablets",
+      "palabras_clave": [
+        "tablet",
+        "tableta",
+        "apple",
+        "ipad"
+      ],
+      "tiendas": [
+        {
+          "tienda": "Walmart",
+          "precio": 8999,
+          "link": "https://www.walmart.com.mx/search?q=Apple+iPad+%2810ma+generaci%C3%B3n%29+64GB"
+        },
+        {
+          "tienda": "Costco",
+          "precio": 8499,
+          "link": "https://www.costco.com.mx/search?text=Apple+iPad+%2810ma+generaci%C3%B3n%29+64GB"
+        },
+        {
+          "tienda": "Sam's Club",
+          "precio": 8599,
+          "link": "https://www.sams.com.mx/search?Ntt=Apple+iPad+%2810ma+generaci%C3%B3n%29+64GB"
+        },
+        {
+          "tienda": "Mercado Libre",
+          "precio": 8299,
+          "link": "https://listado.mercadolibre.com.mx/apple-ipad-%2810ma-generaci%C3%B3n%29-64gb"
+        }
+      ],
+      "resenas": [
+        {
+          "autor": "Victoria P.",
+          "estrellas": 5,
+          "comentario": "Muy fluido y la pantalla es excelente."
+        },
+        {
+          "autor": "Rafael D.",
+          "estrellas": 4,
+          "comentario": "El lápiz se vende por separado."
+        },
+        {
+          "autor": "Abril S.",
+          "estrellas": 5,
+          "comentario": "Perfecto para tomar notas en la universidad."
+        }
+      ],
+      "usuarios_relevantes": [
+        {
+          "nombre": "Profe Digital",
+          "tipo": "Divulgador de tecnología educativa (ficticio)",
+          "comentario": "La usa para preparar sus clases."
+        },
+        {
+          "nombre": "Arquitecta Sofi",
+          "tipo": "Diseñadora de interiores (ficticia)",
+          "comentario": "Bocetea sus diseños en ella."
+        }
+      ]
+    }
+  ]
+}

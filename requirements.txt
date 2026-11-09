@@ -1,0 +1,14 @@
+# Dependencias del proyecto "Agente para Compras Inteligentes".
+# Solo lo indispensable:
+#   - langgraph        -> construye el grafo del agente (nodo LLM + nodo herramientas)
+#   - langchain-core   -> mensajes y el decorador @tool para definir herramientas
+#   - langchain-groq   -> conexion al LLM gratuito de Groq (modelo abierto gpt-oss)
+#   - langchain-ollama -> alternativa: LLM local con Ollama (se elige en el .env)
+#   - python-dotenv    -> lee las variables del archivo .env
+#   - streamlit        -> front end web (ya incluye pandas para las tablas)
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-groq>=0.2.0
+langchain-ollama>=0.2.0
+python-dotenv>=1.0.0
+streamlit>=1.50.0

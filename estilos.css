@@ -1,0 +1,230 @@
+/*
+  estilos.css
+  ===========
+  PAPEL EN EL SISTEMA:
+    Diseño visual "cute" (pastel) de la pagina de Streamlit. app.py lee este
+    archivo y lo inyecta en la pagina. Separar el CSS del codigo de Python
+    permite cambiar el diseño sin tocar la logica del agente.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --fondo: #FFF4F7;
+  --puntos: #F7CFDD;
+  --tarjeta: #FFFFFF;
+  --texto: #4A2C40;
+  --suave: #9A7A8C;
+  --rosa: #F27BA6;
+  --rosa-claro: #FFE1EC;
+  --lila: #CDB8F5;
+  --lila-claro: #F1EAFF;
+  --menta: #9FDCC2;
+  --menta-claro: #E3F7EE;
+  --mantequilla: #FFE59A;
+  --mantequilla-claro: #FFF7D9;
+  --borde: #F6D3E0;
+  --sombra: 0 6px 0 #F6D3E0;
+}
+
+/* Ocultar el "cromo" de Streamlit para que parezca una pagina propia */
+header[data-testid="stHeader"], div[data-testid="stToolbar"], #MainMenu, footer { display: none !important; }
+.block-container { max-width: 980px; padding-top: 2rem; padding-bottom: 4rem; }
+
+.stApp {
+  background-color: var(--fondo);
+  background-image: radial-gradient(var(--puntos) 1.3px, transparent 1.3px);
+  background-size: 24px 24px;
+  color: var(--texto);
+}
+[data-testid="stMarkdownContainer"], [data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li, button { font-family: 'Nunito', sans-serif; color: var(--texto); }
+
+/* ---------- Encabezado ---------- */
+.marca {
+  display: flex; align-items: center; gap: 18px; background: var(--tarjeta);
+  border: 2.5px solid var(--borde); border-radius: 28px; padding: 14px 24px; box-shadow: var(--sombra);
+}
+.marca svg { flex-shrink: 0; }
+.logo { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 2.9rem; line-height: 1; color: var(--rosa); letter-spacing: 0.01em; }
+.logo span { color: var(--lila); }
+.lema { font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--suave); font-size: 1rem; margin-top: 4px; }
+.marca .brillos { margin-left: auto; font-size: 1.4rem; color: var(--lila); letter-spacing: 6px; }
+.tiendas-linea { display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 0 22px; }
+.tiendas-linea span { background: var(--tarjeta); border: 2px solid var(--borde); border-radius: 999px; padding: 3px 12px;
+                      font-size: 0.8rem; font-weight: 700; color: var(--suave); }
+
+/* ---------- Buscador ---------- */
+div[data-testid="stForm"] { border: none; padding: 0; }
+div[data-testid="stTextInput"] label, div[data-testid="InputInstructions"] { display: none; }
+/* La caja que envuelve al campo de texto (el div que contiene al <input>) */
+div[data-testid="stTextInput"] div:has(> input) {
+  border: 2.5px solid var(--lila) !important; border-radius: 999px !important; background: var(--tarjeta) !important;
+  box-shadow: 0 5px 0 var(--lila-claro); overflow: hidden;
+}
+div[data-testid="stTextInput"] div:has(> input):focus-within { border-color: var(--rosa) !important; box-shadow: 0 5px 0 var(--rosa-claro); }
+div[data-testid="stTextInput"] input {
+  font-family: 'Fredoka', sans-serif; font-size: 1.3rem; background: transparent; border: none;
+  padding: 0 22px; height: 3.4rem; color: var(--texto);
+}
+div[data-testid="stFormSubmitButton"] button {
+  width: 100%; height: 3.6rem; background: var(--rosa); color: #fff; border: none; border-radius: 999px;
+  font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 600; box-shadow: 0 5px 0 #D85C89;
+  transition: transform .1s, box-shadow .1s;
+}
+div[data-testid="stFormSubmitButton"] button p { color: #fff; font-family: 'Fredoka', sans-serif; font-size: 1.1rem; font-weight: 600; }
+div[data-testid="stFormSubmitButton"] button:hover { background: #F590B6; color: #fff; }
+div[data-testid="stFormSubmitButton"] button:active { transform: translateY(4px); box-shadow: 0 1px 0 #D85C89; }
+.prueba { font-size: 0.85rem; color: var(--suave); font-weight: 700; }
+button[kind="tertiary"] {
+  background: var(--lila-claro) !important; border: 2px solid var(--lila) !important; border-radius: 999px !important;
+  padding: 2px 14px !important; color: var(--texto) !important; font-size: 0.85rem !important; font-weight: 700;
+}
+button[kind="tertiary"]:hover { background: var(--rosa-claro) !important; border-color: var(--rosa) !important; }
+
+/* ---------- Titulos de seccion ---------- */
+.seccion { display: flex; align-items: center; gap: 12px; margin: 40px 0 14px; }
+.seccion .num { font-family: 'Fredoka', sans-serif; font-weight: 600; background: var(--mantequilla); color: var(--texto);
+                border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.seccion h3 { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.65rem; margin: 0; padding: 0; color: var(--texto); }
+.seccion h3::after { content: " ✦"; color: var(--rosa); font-size: 1.1rem; }
+
+/* ---------- Bitacora del agente ---------- */
+.bitacora { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 24px; padding: 16px 20px; margin-top: 20px; box-shadow: var(--sombra); }
+.bitacora .titulo { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 8px; color: var(--texto); }
+.bitacora .titulo { display: flex; align-items: center; gap: 6px; }
+.paso { display: grid; grid-template-columns: 32px 1fr auto; gap: 10px; align-items: center; padding: 6px 0; border-top: 2px dotted var(--borde); font-size: 0.92rem; font-weight: 600; }
+.paso:first-of-type { border-top: none; }
+.paso .n { font-family: 'Fredoka', sans-serif; background: var(--lila-claro); color: var(--texto); border-radius: 50%;
+           width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; }
+.paso .estado { font-size: 0.8rem; border-radius: 999px; padding: 2px 10px; background: var(--fondo); color: var(--suave); }
+.paso.listo .n { background: var(--menta-claro); }
+.paso.listo .estado { background: var(--menta-claro); color: #2F7A5B; }
+.paso.activo .estado { background: var(--rosa-claro); color: #C2437A; }
+
+/* ---------- Aviso de datos estimados ---------- */
+.aviso { background: var(--mantequilla-claro); border: 2.5px dashed var(--mantequilla); border-radius: 20px; padding: 12px 18px; font-size: 0.92rem; margin-top: 18px; }
+.aviso::before { content: "🌼 "; }
+
+/* ---------- Veredicto ---------- */
+.st-key-veredicto {
+  background: linear-gradient(135deg, #FFE1EC 0%, #F1EAFF 100%); border: 2.5px solid var(--lila);
+  border-radius: 28px; padding: 24px 30px 14px; margin-top: 24px; box-shadow: 0 6px 0 var(--lila); position: relative;
+}
+.st-key-veredicto::after { content: "♡"; position: absolute; top: 14px; right: 24px; font-size: 2rem; color: var(--rosa); }
+.st-key-veredicto p, .st-key-veredicto li { font-size: 1.02rem; line-height: 1.65; }
+.st-key-veredicto strong { color: #C2437A; }
+.etiqueta-veredicto { display: inline-block; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.8rem;
+                      background: var(--tarjeta); color: var(--rosa); border-radius: 999px; padding: 3px 12px; }
+.consulta-veredicto { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 2rem; line-height: 1.15; margin: 8px 0 6px; color: var(--texto); }
+
+/* ---------- Metricas de precio ---------- */
+.metricas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.metrica { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 22px; padding: 14px 16px; box-shadow: var(--sombra); }
+.metrica:nth-child(1) { background: var(--menta-claro); border-color: var(--menta); box-shadow: 0 6px 0 var(--menta); }
+.metrica:nth-child(2) { background: var(--rosa-claro); }
+.metrica:nth-child(3) { background: var(--lila-claro); border-color: var(--lila); box-shadow: 0 6px 0 var(--lila); }
+.metrica:nth-child(4) { background: var(--mantequilla-claro); border-color: var(--mantequilla); box-shadow: 0 6px 0 var(--mantequilla); }
+.metrica .rotulo { font-size: 0.8rem; font-weight: 800; color: var(--suave); }
+.metrica .valor { font-family: 'Fredoka', sans-serif; font-size: 1.7rem; font-weight: 600; margin-top: 2px; color: var(--texto); }
+
+/* ---------- Tarjetas de producto ---------- */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 22px; }
+.producto { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 26px; padding: 20px 20px 12px; position: relative; box-shadow: var(--sombra); }
+.producto.ganador { border-color: var(--rosa); box-shadow: 0 7px 0 var(--rosa); }
+.producto .cinta { position: absolute; top: -14px; left: 18px; background: var(--rosa); color: #fff; font-family: 'Fredoka', sans-serif;
+                   font-weight: 600; font-size: 0.8rem; padding: 3px 12px; border-radius: 999px; }
+.producto .cinta::before { content: "♥ "; }
+.producto .cabeza { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.producto .nombre { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem; line-height: 1.25; }
+.score { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 0.95rem; border-radius: 50%;
+         width: 50px; height: 50px; min-width: 50px; display: flex; align-items: center; justify-content: center; }
+.score.alto { background: var(--menta-claro); color: #2F7A5B; border: 2.5px solid var(--menta); }
+.score.medio { background: var(--mantequilla-claro); color: #9A6B00; border: 2.5px solid var(--mantequilla); }
+.score.bajo { background: var(--rosa-claro); color: #C2437A; border: 2.5px solid var(--rosa); }
+.precio-grande { font-family: 'Fredoka', sans-serif; font-size: 2rem; font-weight: 700; color: var(--rosa); margin-top: 10px; line-height: 1; }
+.precio-grande small { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--suave); margin-left: 6px; }
+.producto .prueba { margin-top: 6px; font-weight: 600; }
+.ofertas { margin-top: 12px; background: var(--fondo); border-radius: 16px; padding: 4px 12px; }
+.oferta { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 2px dotted var(--borde); font-size: 0.9rem; }
+.oferta:last-child { border-bottom: none; }
+.oferta .derecha { display: flex; gap: 12px; align-items: center; font-family: 'Fredoka', sans-serif; }
+.oferta a { color: var(--suave); text-decoration: none; font-size: 0.8rem; font-family: 'Nunito', sans-serif; font-weight: 700; }
+.oferta a:hover { color: var(--rosa); }
+.oferta.mejor .derecha span { color: var(--rosa); font-weight: 600; }
+.oferta.mejor .derecha span::after { content: " ★"; color: var(--mantequilla); }
+.chip { font-size: 0.75rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
+.producto details { margin-top: 10px; font-size: 0.88rem; }
+.producto summary { cursor: pointer; color: var(--suave); font-size: 0.85rem; font-weight: 700; }
+.producto details p { margin: 6px 0; padding: 6px 10px; background: var(--lila-claro); border-radius: 12px; }
+
+/* ---------- Corazones de calificacion ---------- */
+/* 5 corazones grises y encima 5 rosas "recortados" al porcentaje del score */
+.corazones { position: relative; display: inline-block; font-size: 1.05rem; letter-spacing: 2px; line-height: 1; }
+.corazones .vacios { color: #F3DCE5; }
+.corazones .llenos { position: absolute; left: 0; top: 0; overflow: hidden; white-space: nowrap; color: var(--rosa); }
+.mini-score { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.85rem; font-weight: 700; color: var(--suave); }
+.mini-score b { font-family: 'Fredoka', sans-serif; color: var(--texto); font-size: 0.95rem; }
+
+/* ---------- Seccion de calificaciones ---------- */
+.calificacion { display: flex; gap: 18px; align-items: flex-start; background: var(--tarjeta); border: 2.5px solid var(--borde);
+                border-radius: 24px; padding: 16px 20px; margin-bottom: 14px; box-shadow: var(--sombra); }
+.cal-score { min-width: 86px; height: 86px; border-radius: 50%; background: linear-gradient(135deg, var(--rosa-claro), var(--lila-claro));
+             border: 3px solid var(--rosa); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.cal-numero { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 1.9rem; color: var(--rosa); line-height: 1; }
+.cal-de { font-size: 0.72rem; font-weight: 800; color: var(--suave); }
+.cal-cuerpo { flex: 1; min-width: 0; }
+.cal-nombre { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.15rem; }
+.cal-fila { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.cal-fila .corazones { font-size: 1.35rem; }
+.cal-etiqueta { background: var(--mantequilla-claro); border: 2px solid var(--mantequilla); border-radius: 999px; padding: 1px 10px;
+                font-size: 0.8rem; font-weight: 800; }
+.barra { height: 10px; background: #F7E3EB; border-radius: 999px; margin-top: 10px; overflow: hidden; }
+.barra div { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--lila), var(--rosa)); }
+.cal-fuente { font-size: 0.78rem; font-weight: 700; color: var(--suave); margin-top: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chips span { font-size: 0.8rem; font-weight: 700; border-radius: 999px; padding: 3px 10px; }
+.chips .pro { background: var(--menta-claro); color: #2F7A5B; }
+.chips .contra { background: var(--rosa-claro); color: #B23A6B; }
+/* Circulito con "+" (lo que gusta) o "−" (lo que no gusta) en lugar de emojis */
+.chips .pro::before, .chips .contra::before { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px;
+  border-radius: 50%; margin-right: 6px; color: #fff; font-family: 'Fredoka', sans-serif; font-size: 0.8rem; line-height: 1; }
+.chips .pro::before { content: "+"; background: #5FBF98; }
+.chips .contra::before { content: "−"; background: var(--rosa); }
+
+/* Insignia de precios reales y links a videos */
+.etiqueta-veredicto.real { background: var(--menta-claro); color: #2F7A5B; margin-left: 8px; }
+.persona a.video { display: block; color: var(--texto); text-decoration: none; font-weight: 600; }
+.persona a.video:hover { color: var(--rosa); }
+
+/* ---------- Opiniones (resumen del LLM) ---------- */
+.st-key-opiniones { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 24px; padding: 18px 24px 8px; box-shadow: var(--sombra); }
+.st-key-opiniones p, .st-key-opiniones li { font-size: 0.97rem; }
+.st-key-opiniones li::marker { content: "♡  "; color: var(--rosa); }
+
+/* ---------- Usuarios relevantes ---------- */
+.personas { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.persona { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 22px; padding: 14px 16px; display: flex; gap: 12px; font-size: 0.9rem; }
+.persona .avatar { width: 42px; height: 42px; min-width: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                   font-family: 'Fredoka', sans-serif; font-weight: 600; color: var(--texto); }
+.persona .quien { font-weight: 800; }
+.persona .quien small { display: block; font-weight: 600; color: var(--suave); font-size: 0.78rem; }
+.persona .producto-de { display: inline-block; margin: 6px 0 4px; background: var(--fondo); border-radius: 999px; padding: 1px 10px; font-size: 0.75rem; font-weight: 700; color: var(--suave); }
+
+/* ---------- Pantalla inicial ---------- */
+.como { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+.como div { background: var(--tarjeta); border: 2.5px solid var(--borde); border-radius: 24px; padding: 18px 20px; font-size: 0.92rem; color: var(--suave); line-height: 1.5; box-shadow: var(--sombra); font-weight: 600; }
+.como div:nth-child(2) { border-color: var(--lila); box-shadow: 0 6px 0 var(--lila); }
+.como div:nth-child(3) { border-color: var(--menta); box-shadow: 0 6px 0 var(--menta); }
+.como span { display: block; height: 64px; }
+.como b { display: block; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.25rem; color: var(--texto); margin: 2px 0 4px; }
+
+.pie { margin-top: 56px; text-align: center; font-size: 0.85rem; color: var(--suave); font-weight: 700; }
+.pie b { color: var(--rosa); }
+
+@media (max-width: 640px) {
+  .calificacion { flex-direction: column; }
+  .metricas { grid-template-columns: repeat(2, 1fr); }
+  .como { grid-template-columns: 1fr; }
+  .marca .brillos { display: none; }
+  .logo { font-size: 2.2rem; }
+}

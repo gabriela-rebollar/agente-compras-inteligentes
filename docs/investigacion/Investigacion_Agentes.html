@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigación sobre Agentes</title>
+<style>
+  @page { size: Letter; margin: 2.2cm 2cm; }
+  :root { --texto:#1d2330; --suave:#5b6475; --acento:#2f5d8a; --borde:#d5dbe5; --fondo-tabla:#f1f4f8; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--texto); background:#fff;
+         font-size: 11pt; line-height: 1.55; max-width: 800px; margin: 0 auto; padding: 0 16px; }
+  h1 { font-size: 24pt; color: var(--acento); margin: 0 0 6px; }
+  h2 { font-size: 15pt; color: var(--acento); border-bottom: 2px solid var(--borde);
+       padding-bottom: 4px; margin-top: 26px; break-after: avoid; }
+  h3 { font-size: 12pt; margin: 18px 0 6px; break-after: avoid; }
+  p { margin: 6px 0 10px; text-align: justify; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 14px; font-size: 10pt; break-inside: avoid; }
+  th, td { border: 1px solid var(--borde); padding: 6px 8px; vertical-align: top; text-align: left; }
+  th { background: var(--fondo-tabla); }
+  code { font-family: Consolas, monospace; font-size: 9.5pt; background: var(--fondo-tabla); padding: 1px 4px; border-radius: 3px; }
+  pre { background: var(--fondo-tabla); padding: 10px 12px; border-radius: 6px; font-size: 9pt; overflow-x: auto; break-inside: avoid; }
+  .portada { height: 88vh; display: flex; flex-direction: column; justify-content: center; break-after: page; }
+  .portada .sub { font-size: 14pt; color: var(--suave); margin-bottom: 40px; }
+  .portada .datos p { margin: 4px 0; text-align: left; }
+  .figura { text-align: center; margin: 14px 0; break-inside: avoid; }
+  .figura figcaption { font-size: 9.5pt; color: var(--suave); }
+  .nota { border-left: 4px solid var(--acento); background: var(--fondo-tabla); padding: 8px 12px; margin: 12px 0; }
+  ul, ol { margin: 4px 0 10px; }
+  .refs li { margin-bottom: 4px; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<section class="portada">
+  <h1>Agentes de Inteligencia Artificial, LangChain y LangGraph</h1>
+  <div class="sub">Investigación para el proyecto "Agente para Compras Inteligentes"<br>Materia: Inteligencia Artificial</div>
+  <div class="datos">
+    <p><strong>Alumno(a):</strong> ______________________________</p>
+    <p><strong>Profesor(a):</strong> ______________________________</p>
+    <p><strong>Fecha:</strong> ______________________________</p>
+  </div>
+</section>
+
+<h2>1. Introducción</h2>
+<p>Los modelos de lenguaje de gran tamaño (LLM, <em>Large Language Models</em>) como Llama, GPT o Claude son capaces de entender y generar texto. Por sí solos, sin embargo, solo responden con lo que aprendieron durante su entrenamiento: no consultan información actual, no ejecutan cálculos exactos y no realizan acciones en el mundo. Los <strong>agentes</strong> resuelven esta limitación porque combinan un LLM con <strong>herramientas</strong> y un <strong>ciclo de decisión</strong>, de modo que el modelo puede razonar, actuar y aprender del resultado de sus acciones.</p>
+<p>Este documento explica qué es un agente, cómo funcionan los agentes basados en LLM, qué son LangChain y LangGraph, cómo se relacionan, y en qué se diferencia un sistema de un solo agente de uno multiagente. Al final se relaciona todo con el proyecto desarrollado.</p>
+
+<h2>2. ¿Qué es un agente?</h2>
+<p>En Inteligencia Artificial, un <strong>agente</strong> es una entidad que <strong>percibe</strong> su entorno y <strong>actúa</strong> sobre él para alcanzar un objetivo (Russell y Norvig). Un termostato que mide la temperatura y enciende la calefacción es un agente muy simple; un auto autónomo es uno muy complejo.</p>
+<h3>2.1 Componentes de un agente</h3>
+<ul>
+  <li><strong>Percepción:</strong> la información que recibe (en un agente con LLM, el mensaje del usuario y los resultados de las herramientas).</li>
+  <li><strong>Razonamiento o decisión:</strong> el mecanismo que elige qué hacer (en un agente con LLM, el propio modelo).</li>
+  <li><strong>Acciones:</strong> lo que puede hacer (en un agente con LLM, sus herramientas: buscar, calcular, consultar una API).</li>
+  <li><strong>Memoria o estado:</strong> lo que recuerda de lo que ya hizo y observó.</li>
+</ul>
+<h3>2.2 Tipos clásicos de agentes</h3>
+<table>
+  <tr><th>Tipo</th><th>Cómo decide</th><th>Ejemplo</th></tr>
+  <tr><td>Reactivo simple</td><td>Reglas "si pasa X, haz Y", sin memoria.</td><td>Termostato.</td></tr>
+  <tr><td>Basado en modelo</td><td>Mantiene un estado interno del mundo.</td><td>Robot aspiradora que mapea la casa.</td></tr>
+  <tr><td>Basado en objetivos</td><td>Elige acciones que lo acercan a una meta.</td><td>Navegador GPS.</td></tr>
+  <tr><td>Basado en utilidad</td><td>Elige la acción que maximiza un beneficio.</td><td>Sistema que recomienda la mejor compra.</td></tr>
+  <tr><td>Que aprende</td><td>Mejora con la experiencia.</td><td>Sistemas de recomendación de video.</td></tr>
+</table>
+
+<h2>3. Agentes basados en LLM</h2>
+<p>Un agente basado en LLM usa el modelo de lenguaje como "cerebro". El modelo recibe instrucciones, el historial de la conversación y la descripción de las herramientas disponibles. Con eso decide si debe usar una herramienta (y con qué parámetros) o si ya puede responder.</p>
+<h3>3.1 Uso de herramientas (<em>tool calling</em>)</h3>
+<p>Los LLM modernos soportan <strong>tool calling</strong>: el programador describe cada herramienta (nombre, descripción y parámetros) y, cuando el modelo considera que necesita una, en lugar de responder con texto devuelve una <strong>petición estructurada</strong>, por ejemplo <code>buscar_productos(consulta="audífonos")</code>. El programa ejecuta la función real y le devuelve el resultado al modelo. El LLM nunca ejecuta código: solo <em>decide</em> qué ejecutar.</p>
+<h3>3.2 El patrón ReAct</h3>
+<p>ReAct (<em>Reasoning + Acting</em>) fue propuesto por Yao et al. (2022). El agente alterna entre <strong>razonar</strong> qué necesita, <strong>actuar</strong> usando una herramienta y <strong>observar</strong> el resultado, y repite el ciclo hasta tener la información suficiente para dar una respuesta final. Este patrón reduce las "alucinaciones", porque el modelo basa su respuesta en datos que obtuvo de las herramientas y no solo en su memoria.</p>
+<div class="figura">
+  <svg width="520" height="150" viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+    <defs><marker id="f" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2f5d8a"/></marker></defs>
+    <rect x="10" y="50" width="130" height="50" rx="10" fill="#e8eef6" stroke="#2f5d8a"/><text x="75" y="80" text-anchor="middle">Razonar (LLM)</text>
+    <rect x="195" y="50" width="130" height="50" rx="10" fill="#e8eef6" stroke="#2f5d8a"/><text x="260" y="80" text-anchor="middle">Actuar (herramienta)</text>
+    <rect x="380" y="50" width="130" height="50" rx="10" fill="#e8eef6" stroke="#2f5d8a"/><text x="445" y="80" text-anchor="middle">Observar resultado</text>
+    <line x1="140" y1="75" x2="192" y2="75" stroke="#2f5d8a" stroke-width="2" marker-end="url(#f)"/>
+    <line x1="325" y1="75" x2="377" y2="75" stroke="#2f5d8a" stroke-width="2" marker-end="url(#f)"/>
+    <path d="M445,100 C445,140 75,140 75,103" fill="none" stroke="#2f5d8a" stroke-width="2" marker-end="url(#f)"/>
+    <text x="260" y="140" text-anchor="middle" fill="#5b6475" font-size="11">se repite hasta tener la respuesta final</text>
+    <text x="260" y="30" text-anchor="middle" fill="#5b6475" font-size="11">Ciclo ReAct</text>
+  </svg>
+  <figcaption>Figura 1. Ciclo del patrón ReAct.</figcaption>
+</div>
+
+<h2>4. LangChain</h2>
+<p><strong>LangChain</strong> es un framework de código abierto (Python y JavaScript) para construir aplicaciones con LLM. Ofrece piezas reutilizables y una interfaz común para trabajar con distintos proveedores de modelos:</p>
+<ul>
+  <li><strong>Modelos de chat:</strong> una misma interfaz para Groq, Ollama, OpenAI, Anthropic, etc. Cambiar de proveedor implica cambiar muy poco código.</li>
+  <li><strong>Mensajes:</strong> <code>SystemMessage</code>, <code>HumanMessage</code>, <code>AIMessage</code> y <code>ToolMessage</code> representan la conversación.</li>
+  <li><strong>Herramientas:</strong> el decorador <code>@tool</code> convierte una función de Python en una herramienta que el LLM puede usar; su <em>docstring</em> sirve de descripción.</li>
+  <li><strong>Prompts, cadenas y recuperación de documentos (RAG)</strong>, entre otros.</li>
+</ul>
+<p>Las "cadenas" de LangChain funcionan muy bien para flujos lineales (paso 1 → paso 2 → paso 3), pero un agente necesita <strong>ciclos</strong> y <strong>decisiones</strong>, y para eso surgió LangGraph.</p>
+
+<h2>5. LangGraph</h2>
+<p><strong>LangGraph</strong> es una librería del mismo equipo de LangChain para construir agentes como <strong>grafos con estado</strong>. Sus conceptos principales son:</p>
+<table>
+  <tr><th>Concepto</th><th>Qué es</th></tr>
+  <tr><td><strong>Estado</strong></td><td>La información compartida entre los pasos del grafo. Normalmente es un <code>TypedDict</code>. Los <em>reductores</em> como <code>add_messages</code> indican cómo combinar los cambios (por ejemplo, agregar mensajes en lugar de reemplazarlos).</td></tr>
+  <tr><td><strong>Nodos</strong></td><td>Funciones de Python que reciben el estado, hacen un trabajo (llamar al LLM, ejecutar herramientas) y devuelven una actualización del estado.</td></tr>
+  <tr><td><strong>Aristas</strong></td><td>Conexiones entre nodos que indican el orden de ejecución.</td></tr>
+  <tr><td><strong>Aristas condicionales</strong></td><td>Una función decide a qué nodo ir según el estado. Por ejemplo, si el LLM pidió una herramienta va al nodo de herramientas; si no, termina.</td></tr>
+  <tr><td><strong>START / END</strong></td><td>Los puntos de inicio y fin del grafo.</td></tr>
+  <tr><td><strong>Ciclos</strong></td><td>A diferencia de una cadena lineal, el grafo puede regresar a un nodo anterior. Así se implementa el ciclo ReAct.</td></tr>
+</table>
+<p>LangGraph también ofrece <strong>streaming</strong> (ver cada paso en cuanto ocurre), <strong>persistencia o memoria</strong> entre conversaciones, intervención humana (<em>human-in-the-loop</em>) y componentes listos como <code>ToolNode</code>, que ejecuta automáticamente las herramientas que pide el LLM.</p>
+
+<h3>5.1 Relación entre LangChain y LangGraph</h3>
+<table>
+  <tr><th></th><th>LangChain</th><th>LangGraph</th></tr>
+  <tr><td>Propósito</td><td>Piezas para trabajar con LLM (modelos, mensajes, herramientas).</td><td>Orquestar el flujo de un agente como grafo con estado.</td></tr>
+  <tr><td>Tipo de flujo</td><td>Principalmente lineal (cadenas).</td><td>Grafos con ciclos y condiciones.</td></tr>
+  <tr><td>Relación</td><td colspan="2">Son complementarios: LangGraph usa los modelos, mensajes y herramientas de LangChain. En este proyecto LangChain aporta <code>@tool</code>, los mensajes y la conexión con Groq u Ollama, y LangGraph aporta el grafo del agente.</td></tr>
+</table>
+
+<h2>6. Un solo agente vs. sistemas multiagente</h2>
+<h3>6.1 Un solo agente con herramientas</h3>
+<p>Un único LLM razona y decide qué herramientas usar. Las herramientas son funciones "tontas" (no piensan); toda la inteligencia está en el agente. Es la arquitectura más simple y suele ser suficiente cuando la tarea tiene un objetivo claro.</p>
+<h3>6.2 Sistemas multiagente</h3>
+<p>Varios agentes, cada uno con su propio LLM, instrucciones y herramientas, colaboran para resolver una tarea. Patrones comunes:</p>
+<ul>
+  <li><strong>Supervisor:</strong> un agente central recibe la tarea y delega en agentes especialistas.</li>
+  <li><strong>Jerárquico:</strong> supervisores que coordinan a otros supervisores, para tareas muy grandes.</li>
+  <li><strong>Red o colaborativo:</strong> los agentes se pasan el control entre sí según lo necesiten.</li>
+</ul>
+<table>
+  <tr><th>Criterio</th><th>Un solo agente</th><th>Multiagente</th></tr>
+  <tr><td>Complejidad</td><td>Baja</td><td>Alta (coordinación y comunicación)</td></tr>
+  <tr><td>Llamadas al LLM</td><td>Pocas</td><td>Muchas</td></tr>
+  <tr><td>Costo y latencia</td><td>Menores</td><td>Mayores</td></tr>
+  <tr><td>Depuración</td><td>Sencilla</td><td>Difícil</td></tr>
+  <tr><td>Conviene cuando…</td><td>La tarea es acotada y las herramientas están bien definidas.</td><td>Hay subtareas grandes que requieren especialización o razonamiento independiente.</td></tr>
+</table>
+<div class="nota">Regla práctica: empezar con un solo agente y pasar a multiagente solo cuando un agente con demasiadas herramientas o responsabilidades empieza a confundirse.</div>
+
+<h2>7. Aplicación en el proyecto</h2>
+<p>El "Agente para Compras Inteligentes" es <strong>un solo agente</strong> construido con LangGraph que sigue el patrón ReAct. El grafo tiene un nodo <em>agente</em> (el LLM gpt-oss-120b en Groq, o Llama local con Ollama), un nodo <em>herramientas</em> (<code>ToolNode</code>) y una arista condicional que decide si se usa una herramienta o se da la respuesta final. El estado es un <code>TypedDict</code> con la lista de mensajes.</p>
+<div class="figura">
+  <svg width="520" height="210" viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12">
+    <defs><marker id="g" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2f5d8a"/></marker></defs>
+    <rect x="20" y="85" width="70" height="36" rx="18" fill="#fff" stroke="#2f5d8a"/><text x="55" y="107" text-anchor="middle">INICIO</text>
+    <rect x="130" y="80" width="120" height="46" rx="8" fill="#e8eef6" stroke="#2f5d8a"/><text x="190" y="100" text-anchor="middle">Nodo agente</text><text x="190" y="116" text-anchor="middle" fill="#5b6475" font-size="11">(LLM razona)</text>
+    <polygon points="330,103 365,78 400,103 365,128" fill="#fff" stroke="#2f5d8a"/><text x="365" y="107" text-anchor="middle" font-size="11">¿tool?</text>
+    <rect x="300" y="160" width="130" height="40" rx="8" fill="#e8eef6" stroke="#2f5d8a"/><text x="365" y="185" text-anchor="middle">Nodo herramientas</text>
+    <rect x="440" y="85" width="64" height="36" rx="18" fill="#fff" stroke="#2f5d8a"/><text x="472" y="107" text-anchor="middle">FIN</text>
+    <line x1="90" y1="103" x2="127" y2="103" stroke="#2f5d8a" stroke-width="2" marker-end="url(#g)"/>
+    <line x1="250" y1="103" x2="327" y2="103" stroke="#2f5d8a" stroke-width="2" marker-end="url(#g)"/>
+    <line x1="400" y1="103" x2="437" y2="103" stroke="#2f5d8a" stroke-width="2" marker-end="url(#g)"/><text x="418" y="95" text-anchor="middle" font-size="10" fill="#5b6475">no</text>
+    <line x1="365" y1="128" x2="365" y2="157" stroke="#2f5d8a" stroke-width="2" marker-end="url(#g)"/><text x="375" y="146" font-size="10" fill="#5b6475">sí</text>
+    <path d="M300,180 C190,180 190,150 190,129" fill="none" stroke="#2f5d8a" stroke-width="2" marker-end="url(#g)"/><text x="215" y="170" font-size="10" fill="#5b6475">observa</text>
+    <text x="260" y="30" text-anchor="middle" fill="#5b6475" font-size="11">Grafo del agente en LangGraph</text>
+  </svg>
+  <figcaption>Figura 2. Grafo del Agente para Compras Inteligentes.</figcaption>
+</div>
+<p>El agente cuenta con cuatro herramientas que corresponden a las acciones del proyecto: <strong>buscador de productos</strong> (opciones por tienda), <strong>comparador de precios</strong> (precio final, promedio y rango, calculados con Python), <strong>analista de reseñas</strong> (al menos tres opiniones y un score del 1 al 10) y <strong>analista de usuarios relevantes</strong> (personalidades que usan el producto). Se eligió un solo agente porque las cuatro acciones son operaciones concretas que no requieren razonamiento independiente: basta con que un agente decida cuándo usarlas e integre sus resultados en una recomendación. Un sistema multiagente habría aumentado el costo y la complejidad sin mejorar el resultado.</p>
+
+<h2>8. Conclusiones</h2>
+<ul>
+  <li>Un agente combina un LLM (razonamiento) con herramientas (acciones) y un ciclo de decisión. Esto le permite resolver tareas que un LLM solo no puede.</li>
+  <li>El patrón ReAct hace que las respuestas se basen en datos observados, lo que reduce las invenciones del modelo.</li>
+  <li>LangChain proporciona las piezas (modelos, mensajes, herramientas) y LangGraph organiza el flujo como un grafo con estado y ciclos. Son complementarios.</li>
+  <li>Un solo agente con herramientas es la opción más simple, barata y fácil de depurar. Los sistemas multiagente se justifican solo en tareas grandes que requieren especialización.</li>
+</ul>
+
+<h2>Referencias</h2>
+<ol class="refs">
+  <li>Russell, S. y Norvig, P. <em>Inteligencia Artificial: Un enfoque moderno</em>. Pearson.</li>
+  <li>Yao, S. et al. (2022). <em>ReAct: Synergizing Reasoning and Acting in Language Models</em>. arXiv:2210.03629.</li>
+  <li>Documentación de LangGraph. https://langchain-ai.github.io/langgraph/</li>
+  <li>Documentación de LangChain. https://python.langchain.com/</li>
+  <li>Documentación de Groq. https://console.groq.com/docs</li>
+  <li>Documentación de Ollama. https://ollama.com</li>
+</ol>
+
+</body>
+</html>
