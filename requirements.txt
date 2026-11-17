@@ -6,9 +6,11 @@
 #   - langchain-ollama -> alternativa: LLM local con Ollama (se elige en el .env)
 #   - python-dotenv    -> lee las variables del archivo .env
 #   - streamlit        -> front end web (ya incluye pandas para las tablas)
+#   - pymysql          -> conexion a MySQL para guardar los resultados (analisis_compras)
 langgraph>=0.2.0
 langchain-core>=0.3.0
 langchain-groq>=0.2.0
 langchain-ollama>=0.2.0
 python-dotenv>=1.0.0
 streamlit>=1.50.0
+pymysql>=1.1.0

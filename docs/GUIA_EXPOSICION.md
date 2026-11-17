@@ -22,26 +22,31 @@ Muestra el diagrama de `docs/ARQUITECTURA.md` y abre `agente.py`.
 Abre `estado.py`.
 > "El **estado** es un TypedDict con una sola lista de mensajes. Gracias a `add_messages`, cada nodo **agrega** mensajes en lugar de borrarlos. Así el agente recuerda todo lo que ha observado."
 
-### 5. Las 4 herramientas (2 min)
+### 5. Las 5 herramientas (2–3 min)
 Abre la carpeta `herramientas/`.
-> "Son las 4 acciones que pedía el proyecto:
+> "Son las acciones que pedía el proyecto:
 > 1. **Buscador de productos:** encuentra las opciones en cada tienda con su precio y link.
 > 2. **Comparador de precios:** calcula con Python el precio final más bajo, el promedio y el rango. Lo hago con Python y no con el LLM porque los LLM se pueden equivocar en las cuentas.
 > 3. **Analista de reseñas:** junta al menos 3 opiniones y calcula un score del 1 al 10, que es el promedio de estrellas por dos. El LLM resume los pros y contras.
-> 4. **Analista de usuarios relevantes:** indica qué personalidades usan el producto.
+> 4. **Analista de usuarios relevantes:** indica qué personalidades usan o reseñaron el producto.
+> 5. **Guardar resultados:** inserta cada precio en la tabla `resultados` de la base MySQL local `analisis_compras`, con el nombre del producto, el comercio, el precio y la fecha de consulta. Así el agente no se queda solo en buscar: **también actúa sobre otro sistema**.
 >
 > El LLM sabe para qué sirve cada herramienta porque lee su **docstring**."
 
-### 6. Datos (1 min)
-> "Los datos tienen dos niveles. Primero hay un **catálogo** de 33 productos en 10 categorías, con precios en pesos. Si busco algo que no está, por ejemplo una mochila, el sistema le pide al LLM que **estime** modelos reales, precios aproximados y reseñas, con un formato fijo (salida estructurada). Esos datos se guardan para que las 4 herramientas usen la misma información, y la página avisa que son precios de referencia. Lo hice así porque Walmart, Costco y Sam's no tienen una API pública gratuita y el scraping va contra sus términos."
+Abre `herramientas/base_datos.py`.
+> "La herramienta 5 se conecta con PyMySQL al MySQL de XAMPP, crea la base y la tabla si no existen, e inserta todas las filas dentro de una **transacción**: si algo falla hace `rollback` y no quedan datos a medias."
 
-### 7. Demo en vivo (2–3 min)
+### 6. Datos (1 min)
+> "Los precios vienen de **Google Shopping México** con SerpAPI, que es una API formal, así que son **precios reales de hoy**. Si no hay clave o no hay internet, uso un **catálogo** de 33 productos simulados. Y si busco algo que no está, el LLM **estima** modelos y precios con un formato fijo (salida estructurada). No hice scraping porque Walmart, Costco y Sam's no tienen una API pública y va contra sus términos."
+
+### 7. Demo en vivo (3 min)
+**Antes de exponer:** enciende **MySQL en XAMPP** y abre **phpMyAdmin** en otra pestaña.
 1. Corre `streamlit run app.py`.
 2. Escribe **"audífonos inalámbricos"**.
-3. Señala el recuadro de pasos: *"Aquí se ve al agente razonar y usar cada herramienta en vivo."*
-4. Recorre la tabla de precios, las métricas, los scores, los usuarios relevantes y la recomendación.
-5. Prueba algo que **no está en el catálogo**, como **"mochila escolar"** o **"silla de oficina"**, y señala el aviso de "precios de referencia".
-6. Si hay tiempo, busca algo sin sentido, como **"asdfgh"**, para mostrar que el agente no inventa.
+3. Señala la bitácora: *"Aquí se ve al agente razonar y usar cada herramienta en vivo; la última es 'Guardar en MySQL'."*
+4. Recorre los precios, las calificaciones, los usuarios relevantes y la recomendación.
+5. Muestra el aviso **"Guardado en MySQL"** y cambia a **phpMyAdmin** → base `analisis_compras` → tabla `resultados`: ahí aparecen las filas nuevas con la fecha de hoy.
+6. Si hay tiempo, busca algo que no está en el catálogo, como **"mochila escolar"**, o algo sin sentido, como **"asdfgh"**, para mostrar que el agente no inventa.
 
 **Plan B (sin internet):** corre `python test_agente.py --solo-herramientas`, que funciona sin LLM. O cambia a Ollama en el `.env`.
 
@@ -89,7 +94,7 @@ Si la búsqueda no está en el catálogo, `generador.py` le pide al LLM que llen
 Para tener una cuarta tienda muy usada en México y enriquecer la comparación. Además, si se conectara a datos reales, Mercado Libre sí tiene una presencia en línea amplia, a diferencia de Costco y Sam's, que exigen membresía para gran parte de su catálogo.
 
 **11. ¿Las personalidades son reales?**
-No. Son ficticias a propósito. No existe una fuente gratuita confiable con esa información, y poner nombres de famosos reales sería inventar algo falso sobre personas reales. La herramienta demuestra la capacidad. En un sistema real se conectaría a redes sociales o noticias.
+Con SerpAPI, sí: son creadores **reales** de YouTube que hicieron un video de reseña del producto, con el link al video. Digo que lo *reseñaron* y no que lo compraron, porque eso es lo que se puede comprobar. Sin clave, el catálogo usa personalidades ficticias a propósito, para no inventar algo falso sobre personas reales.
 
 **12. ¿Qué es el estado y por qué es un TypedDict?**
 Es la información que comparten los nodos del grafo. Un TypedDict es un diccionario con campos y tipos definidos, lo que lo hace claro y fácil de revisar. El mío solo tiene `messages`, la lista de la conversación.
@@ -104,10 +109,22 @@ El modelo abierto **gpt-oss-120b** en Groq: es gratuito, rápido y soporta *tool
 Si es un producto real que no está en el catálogo, se estiman sus datos (ver 9b). Si no es algo que vendan esas tiendas, por ejemplo "asdfgh", el generador devuelve una lista vacía, las herramientas responden "No se encontraron productos" y el agente lo dice y sugiere buscar otra cosa.
 
 **16. ¿Cómo mejorarías el proyecto?**
-- Conectarlo a una API de precios reales, como Google Shopping vía SerpAPI.
+- Usar el historial de la tabla `resultados` para mostrar **gráficas de cómo cambia el precio** con el tiempo y avisar cuándo baja.
 - Agregar memoria entre conversaciones para recordar las preferencias del usuario.
 - Dejar que el usuario indique su presupuesto para filtrar opciones.
 - Hacer una búsqueda semántica (con *embeddings*) en lugar de por palabras clave.
 
 **17. ¿Por qué Streamlit?**
 Es libre, se programa en Python puro y permite hacer una interfaz web con tablas y métricas en pocas líneas, ideal para prototipos de IA.
+
+**18. ¿Para qué guardas los resultados en MySQL?**
+Para que el agente **interactúe con otra herramienta** y no se quede solo en la búsqueda. Además deja un **historial de precios**: con SQL se puede ver qué tienda es más barata en promedio o cómo cambió el precio de un producto. Es el mismo patrón que se usa en agentes reales, que escriben en bases de datos, mandan correos o crean tickets.
+
+**19. ¿Cómo es la tabla y cómo se conecta?**
+Base `analisis_compras`, tabla `resultados` con `id` (llave primaria autoincremental), `nombre_producto`, `comercio`, `precio` (`DECIMAL(10,2)` con un `CHECK` que impide negativos) y `fecha_consulta` (`DATETIME`). Me conecto con **PyMySQL** al MySQL de XAMPP; los datos de conexión están en el `.env`, no escritos en el código.
+
+**20. ¿Qué pasa si MySQL está apagado?**
+La herramienta captura el error y responde `"guardado": false` con un mensaje. El agente sigue y da su recomendación normalmente; solo no aparece el aviso de guardado. Por eso la versión publicada en la nube también funciona, aunque no tenga acceso a mi MySQL local.
+
+**21. ¿Por qué usas una transacción?**
+Porque guardo varias filas a la vez. Con `commit()` al final y `rollback()` si algo falla, o se guardan **todas** las filas de la consulta o **ninguna**, y nunca quedan datos a medias.

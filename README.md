@@ -10,7 +10,7 @@ Se puede buscar **cualquier producto**. Si está en el catálogo de 33 productos
 
 ---
 
-## ✨ Acciones del agente (4 herramientas)
+## ✨ Acciones del agente (5 herramientas)
 
 | # | Herramienta | Qué hace |
 |---|---|---|
@@ -18,6 +18,7 @@ Se puede buscar **cualquier producto**. Si está en el catálogo de 33 productos
 | 2 | 💲 **Comparador de precios** (`comparar_precios`) | Obtiene el precio final (el más bajo), el promedio y el rango de precio de todas las opciones. |
 | 3 | ⭐ **Analista de reseñas** (`analizar_resenas`) | Extrae al menos 3 opiniones por producto y asigna un score del 1 al 10 (ej. 7.5/10). |
 | 4 | 👥 **Analista de usuarios relevantes** (`buscar_usuarios_relevantes`) | Consulta qué personalidades han adquirido o recomiendan el producto. |
+| 5 | 🗄️ **Guardar resultados** (`guardar_resultados`) | Inserta en la tabla `resultados` de la base MySQL local `analisis_compras`: nombre del producto, comercio, precio y fecha_consulta. |
 
 ---
 
@@ -29,14 +30,17 @@ Proyecto IA/
 ├── estado.py              # El estado del grafo (TypedDict con la lista de mensajes)
 ├── llm.py                 # Crea el LLM: Groq u Ollama, según el .env
 ├── herramientas/
-│   ├── __init__.py        # Junta las 4 herramientas en una lista
+│   ├── __init__.py        # Junta las 5 herramientas en una lista
 │   ├── datos.py           # Fuente de datos: busca en el catálogo y, si no hay, usa el generador
 │   ├── generador.py       # El LLM estima productos que no están en el catálogo
 │   ├── datos_reales.py    # Opcional: precios reales (Google Shopping) y reseñadores de YouTube vía SerpAPI
 │   ├── buscador.py        # Herramienta 1: Buscador de productos
 │   ├── comparador.py      # Herramienta 2: Comparador de precios
 │   ├── resenas.py         # Herramienta 3: Analista de reseñas
-│   └── usuarios.py        # Herramienta 4: Analista de usuarios relevantes
+│   ├── usuarios.py        # Herramienta 4: Analista de usuarios relevantes
+│   └── base_datos.py      # Herramienta 5: Guarda los resultados en MySQL
+├── database/
+│   └── analisis_compras.sql # Crea la base analisis_compras y la tabla resultados
 ├── data/
 │   ├── productos_mock.json      # Catálogo: 33 productos simulados (precios en MXN, reseñas, personalidades)
 │   └── productos_generados.json # Se crea solo: guarda los productos estimados por el LLM
@@ -80,6 +84,11 @@ Requisitos: **Python 3.11 o superior**.
    - **Groq (recomendado):** crea una clave gratis en https://console.groq.com/keys y pégala en `GROQ_API_KEY`.
    - **Precios reales (opcional):** crea una clave gratis en https://serpapi.com/manage-api-key y pégala en `SERPAPI_API_KEY`. Con ella se usan precios reales de Google Shopping México, la calificación de Google y creadores reales de YouTube que reseñaron el producto.
    - **Ollama (local, sin internet):** instala https://ollama.com, ejecuta `ollama pull llama3.1` y en el `.env` pon `PROVEEDOR_LLM=ollama`.
+5. **Base de datos MySQL (XAMPP):**
+   - Abre el **XAMPP Control Panel** y enciende **MySQL**.
+   - Revisa en el `.env` el puerto (`MYSQL_PORT`, por defecto `3307`; en algunas instalaciones de XAMPP es `3306`), el usuario (`root`) y la contraseña (vacía en XAMPP).
+   - La base `analisis_compras` y la tabla `resultados` **se crean solas** la primera vez que el agente guarda. Si prefieres crearlas a mano, ejecuta `database/analisis_compras.sql` en phpMyAdmin, en la pestaña **SQL**.
+   - Si MySQL está apagado (o la app corre en la nube), el agente sigue funcionando; solo avisa que no pudo guardar.
 
 ---
 
@@ -105,18 +114,19 @@ python test_agente.py --solo-herramientas
 
 ## 💡 Ejemplo de uso
 
-1. Escribe **"audífonos inalámbricos"** y presiona **Buscar y recomendar**.
+1. Escribe **"audífonos inalámbricos"** y presiona **Comparar ✦**.
 2. Verás al agente trabajar paso a paso:
    - 🧠 Razona → decide usar 🔎 Buscador de productos
    - 👀 Observa el resultado…
    - 🧠 Razona → decide usar 💲 Comparador de precios
-   - … y así con las 4 herramientas.
+   - … y así con las 5 herramientas. La última guarda los precios en MySQL ("Guardar en MySQL · 9 filas guardadas").
 3. La página muestra:
    - La tabla comparativa de precios por tienda (con link a cada tienda).
    - Las métricas: mínimo **$499**, máximo **$6,499**, promedio y rango.
    - El score de reseñas de cada producto, por ejemplo *Sony WH-1000XM5: 9.0/10*.
    - Los usuarios relevantes.
    - La **recomendación final** del agente, que equilibra precio y calidad.
+   - El aviso **"Guardado en MySQL"** con cuántos precios se guardaron en `analisis_compras.resultados`.
 
 Puedes buscar lo que quieras:
 - **Del catálogo (respuesta inmediata):** audífonos inalámbricos, pantalla, celular, laptop, freidora de aire, cafetera, aspiradora, reloj inteligente, consola, tablet. También búsquedas específicas, como "celular samsung" o "smart tv 55 pulgadas".
@@ -126,9 +136,22 @@ Puedes buscar lo que quieras:
 
 ## 📝 Notas sobre los datos
 
-- El **catálogo** (`data/productos_mock.json`) es simulado. Para productos fuera del catálogo, el LLM **estima** los datos y la página muestra un aviso de "precios de referencia". Las estimaciones se guardan en `data/productos_generados.json`.
-- **¿Por qué simulados?** Walmart, Costco y Sam's Club no ofrecen una API pública gratuita de precios, y hacer scraping a sus páginas no está permitido. Se agregó **Mercado Libre** como cuarta tienda para enriquecer la comparación.
-- Los precios son aproximados en pesos mexicanos. Las reseñas y las personalidades son **ficticias**.
-- Los links llevan a la **búsqueda** del producto en la página real de cada tienda.
+- **Con clave de SerpAPI:** precios **reales de hoy** de Google Shopping México, la calificación real de Google y creadores reales de YouTube que reseñaron el producto. La página lo indica con la insignia "Precios reales de hoy".
+- **Sin clave:** se usa el **catálogo simulado** (`data/productos_mock.json`, con precios aproximados y reseñas y personalidades ficticias). Para productos fuera del catálogo, el LLM **estima** los datos y la recomendación aclara que son aproximados.
+- **¿Por qué no scraping?** Walmart, Costco y Sam's Club no ofrecen una API pública gratuita de precios, y hacer scraping a sus páginas no está permitido. Por eso se usa SerpAPI (una API formal) y, como reemplazo de Costco y Sam's (que casi no aparecen en Google Shopping), otras tiendas de México: Mercado Libre, Amazon México, Liverpool, Coppel, etc.
+
+## 🗄️ Consultar lo que guardó el agente
+
+En phpMyAdmin (http://localhost/phpmyadmin), abre la base `analisis_compras`, pestaña **SQL**:
+
+```sql
+-- Últimas consultas
+SELECT * FROM resultados ORDER BY fecha_consulta DESC LIMIT 20;
+
+-- Precio mínimo, máximo y promedio de cada producto
+SELECT nombre_producto, MIN(precio) AS minimo, MAX(precio) AS maximo,
+       ROUND(AVG(precio), 2) AS promedio, COUNT(*) AS ofertas
+FROM resultados GROUP BY nombre_producto;
+```
 
 Para más detalle, consulta [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md) y [docs/GUIA_EXPOSICION.md](docs/GUIA_EXPOSICION.md).

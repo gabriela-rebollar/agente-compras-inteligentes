@@ -2,16 +2,17 @@
 
 ## 1. Visión general
 
-El sistema es **un solo agente** construido con **LangGraph**. El agente tiene un "cerebro" (un LLM: gpt-oss-120b en Groq, o Llama local con Ollama) y **4 herramientas**. En cada paso el LLM **razona** qué hacer: decide si necesita usar una herramienta o si ya puede dar la respuesta final. Este ciclo se conoce como el patrón **ReAct** (*Reasoning + Acting*):
+El sistema es **un solo agente** construido con **LangGraph**. El agente tiene un "cerebro" (un LLM: gpt-oss-120b en Groq, o Llama local con Ollama) y **5 herramientas** (4 de consulta y análisis, y 1 que guarda los resultados en MySQL). En cada paso el LLM **razona** qué hacer: decide si necesita usar una herramienta o si ya puede dar la respuesta final. Este ciclo se conoce como el patrón **ReAct** (*Reasoning + Acting*):
 
 > **Razonar** (el LLM piensa) → **Actuar** (ejecuta una herramienta) → **Observar** (lee el resultado) → vuelve a razonar… → **Respuesta final**
 
 ```
 Usuario ──► app.py (Streamlit) ──► agente.py (grafo LangGraph) ──► herramientas/ ──► datos.py
                                                                                       ├─► data/productos_mock.json (catálogo)
-                                                                                      └─► generador.py (LLM estima si no está)
-                  ▲                         │
+                                                                                      ├─► generador.py (LLM estima si no está)
+                  ▲                         │                                         └─► datos_reales.py (SerpAPI, opcional)
                   └──── pasos y resultados ─┘
+                                            └──► base_datos.py ──► MySQL local: analisis_compras.resultados
 ```
 
 ---
@@ -22,9 +23,10 @@ Usuario ──► app.py (Streamlit) ──► agente.py (grafo LangGraph) ─�
 flowchart TD
     INICIO([INICIO]) --> AGENTE
     AGENTE["🧠 Nodo agente (LLM)<br/>razona y decide"] --> COND{"decidir_siguiente_paso<br/>¿el LLM pidió una herramienta?"}
-    COND -- "Sí → actuar" --> HERR["🔧 Nodo herramientas (ToolNode)<br/>1. buscar_productos<br/>2. comparar_precios<br/>3. analizar_resenas<br/>4. buscar_usuarios_relevantes"]
+    COND -- "Sí → actuar" --> HERR["🔧 Nodo herramientas (ToolNode)<br/>1. buscar_productos<br/>2. comparar_precios<br/>3. analizar_resenas<br/>4. buscar_usuarios_relevantes<br/>5. guardar_resultados"]
     HERR -- "observar resultado" --> AGENTE
     COND -- "No → respuesta final" --> FIN([FIN: recomendación])
+    HERR -. "herramienta 5 inserta filas" .-> BD[("🗄️ MySQL<br/>analisis_compras.resultados")]
 ```
 
 El grafo tiene solo **2 nodos y 1 condición**:
@@ -60,7 +62,9 @@ El estado es **una sola lista de mensajes**. Es la "memoria de trabajo" del agen
 | 6 | herramientas | `ToolMessage` con los scores y las reseñas |
 | 7 | agente | `AIMessage` con `tool_calls = [buscar_usuarios_relevantes(...)]` |
 | 8 | herramientas | `ToolMessage` con las personalidades |
-| 9 | agente | `AIMessage` **sin** `tool_calls` → recomendación final → **FIN** |
+| 9 | agente | `AIMessage` con `tool_calls = [guardar_resultados(...)]` |
+| 10 | herramientas | `ToolMessage` con `{"guardado": true, "filas_insertadas": 9, ...}` (ya se escribió en MySQL) |
+| 11 | agente | `AIMessage` **sin** `tool_calls` → recomendación final → **FIN** |
 
 **¿Por qué `add_messages`?** Es un *reductor*: cuando un nodo devuelve `{"messages": [nuevo]}`, LangGraph **agrega** ese mensaje a la lista en lugar de reemplazarla. Así el LLM siempre ve todo lo que ha observado.
 
@@ -72,7 +76,7 @@ El estado es **una sola lista de mensajes**. Es la "memoria de trabajo" del agen
 
 Todas viven en `herramientas/` y se definen con el decorador `@tool` de LangChain. El **docstring** de cada herramienta es lo que lee el LLM para saber **cuándo** usarla. Todas reciben un único parámetro, `consulta` (lo que busca el usuario), y devuelven **texto JSON**. Así el LLM las puede leer y el front end puede armar tablas con los mismos datos.
 
-Las 4 comparten `herramientas/datos.py` (ver sección 5), que primero busca en el catálogo por palabras clave:
+Las 5 comparten `herramientas/datos.py` (ver sección 5), que primero busca en el catálogo por palabras clave:
 1. Pasa la consulta a minúsculas y le quita los acentos ("Audífonos" → "audifonos").
 2. Quita las palabras vacías ("de", "para", "quiero"…).
 3. Le da a cada producto un puntaje según cuántas palabras de la consulta coinciden con su nombre, categoría o palabras clave.
@@ -95,7 +99,28 @@ Las 4 comparten `herramientas/datos.py` (ver sección 5), que primero busca en e
 
 ### 4.4 👥 Analista de usuarios relevantes — `buscar_usuarios_relevantes`
 - **Salida:** las personalidades que usan o recomiendan cada producto (nombre, tipo y comentario).
-- **Datos ficticios:** no existe una API gratuita con esta información, y usar nombres de famosos reales sería inventar algo falso sobre personas reales.
+- **Sin SerpAPI:** personalidades ficticias del catálogo, porque usar nombres de famosos reales sin prueba sería inventar algo falso sobre personas reales.
+- **Con SerpAPI:** creadores **reales** de YouTube que hicieron un video de reseña del producto (ver sección 5).
+
+### 4.5 🗄️ Guardar resultados — `guardar_resultados` (`herramientas/base_datos.py`)
+- **Qué hace:** inserta en la tabla **`resultados`** de la base de datos MySQL local **`analisis_compras`** una fila por cada oferta encontrada.
+- **Tabla** (también en `database/analisis_compras.sql`):
+
+  | Columna | Tipo | Ejemplo |
+  |---|---|---|
+  | `id` | `INT UNSIGNED AUTO_INCREMENT` (llave primaria) | 1 |
+  | `nombre_producto` | `VARCHAR(200)` | Ninja Air Fryer AF101 3.8L |
+  | `comercio` | `VARCHAR(100)` | Mercado Libre |
+  | `precio` | `DECIMAL(10,2)` con `CHECK (precio >= 0)` | 1507.00 |
+  | `fecha_consulta` | `DATETIME` | 2026-11-16 20:37:02 |
+
+- **Cómo lo hace:**
+  1. Se conecta con **PyMySQL** usando los datos del `.env` (XAMPP: `127.0.0.1`, puerto `3307`, usuario `root`).
+  2. Ejecuta `CREATE DATABASE IF NOT EXISTS` y `CREATE TABLE IF NOT EXISTS`, así no hay que crear nada a mano.
+  3. Inserta todas las filas con `executemany` dentro de una **transacción**: `commit()` si todo sale bien y `rollback()` si algo falla, así nunca quedan guardados datos a medias.
+  4. Todas las filas de una misma consulta llevan **la misma fecha y hora**.
+- **Si MySQL no está disponible** (XAMPP apagado o la app en la nube), devuelve `"guardado": false` con un mensaje y el agente sigue normalmente.
+- **¿Por qué es una herramienta y no código suelto?** Porque así el agente **actúa sobre otro sistema** (una base de datos) y no se queda solo en buscar. Es la idea central de los agentes: el LLM decide **cuándo** usar cada herramienta, incluso las que modifican el mundo exterior.
 
 ---
 
@@ -115,13 +140,13 @@ flowchart LR
 1. **Catálogo:** se usa si en un producto de `data/productos_mock.json` aparecen **todas** las palabras importantes de la búsqueda.
 2. **Estimado:** si no hay coincidencias, `herramientas/generador.py` le pide al LLM entre 3 y 5 productos **reales** para esa búsqueda, con precios aproximados en MXN por tienda, reseñas representativas y personalidades ficticias.
    - Usa **salida estructurada** (`with_structured_output` con clases de Pydantic): el LLM llena un "molde" con los mismos campos que el catálogo, así que las herramientas no notan la diferencia.
-   - El resultado se **guarda** en `data/productos_generados.json`. Las 4 herramientas consultan los datos por separado; si cada una generara de nuevo, verían productos distintos. Al guardarlo, todas usan la misma información y la siguiente búsqueda igual es inmediata.
-   - Las herramientas devuelven `"origen": "estimado"`. Con eso el agente aclara que los precios son aproximados y la página muestra un aviso.
+   - El resultado se **guarda** en `data/productos_generados.json`. Las herramientas consultan los datos por separado; si cada una generara de nuevo, verían productos distintos. Al guardarlo, todas usan la misma información y la siguiente búsqueda igual es inmediata.
+   - Las herramientas devuelven `"origen": "estimado"`. Con eso el agente aclara en la recomendación que los precios son aproximados.
 
 3. **Datos reales (opcional):** si existe `SERPAPI_API_KEY` en el `.env`, `herramientas/datos_reales.py` consulta **SerpAPI** para cada producto (máximo 5):
    - **Google Shopping México:** precios reales de hoy. Se queda con la oferta más barata de cada tienda aceptada y descarta accesorios (el título debe contener al menos el 60 % de las palabras del modelo) y precios sospechosamente bajos. También toma la **calificación real de Google** (estrellas y número de reseñas), que reemplaza al score simulado: `score = estrellas × 2`.
    - **YouTube:** creadores **reales** que reseñaron el producto (nombre del canal, título y link del video). Reemplazan a las personalidades ficticias. Se dice que lo *reseñaron*, no que lo compraron, porque eso es lo que se puede comprobar.
-   - **Tiendas:** Walmart, Costco y Sam's Club, más Mercado Libre, Amazon México y Liverpool como reemplazo. Costco y Sam's casi no aparecen en Google Shopping porque buena parte de su catálogo exige membresía.
+   - **Tiendas:** Walmart, Costco y Sam's Club, más tiendas de México como reemplazo (Mercado Libre, Amazon México, Liverpool, Coppel, Chedraui, Soriana y The Home Depot). Se descartan eBay y tiendas de otros países. Costco y Sam's casi no aparecen en Google Shopping porque buena parte de su catálogo exige membresía.
    - Los resultados se guardan por día en `data/datos_reales.json` para no gastar consultas del plan gratuito.
 
 ### El catálogo
@@ -150,7 +175,7 @@ Si en el futuro se quisieran datos reales, solo se modifica `datos.py`. **Las he
 | Costo y velocidad | Más barato y rápido. | Más caro y lento. |
 | Cuándo conviene | Tareas con un objetivo claro y herramientas bien definidas. | Tareas muy grandes, con subtareas que necesitan razonamiento independiente o especialización profunda. |
 
-**En este proyecto** las 4 acciones son **operaciones concretas** (buscar, calcular, extraer reseñas, consultar personalidades). No necesitan "pensar por su cuenta": basta con que **un** agente decida **cuándo** usar cada una y luego **integre** los resultados en una recomendación. Un sistema multiagente agregaría complejidad y costo sin mejorar el resultado.
+**En este proyecto** las 5 acciones son **operaciones concretas** (buscar, calcular, extraer reseñas, consultar personalidades y guardar en la base de datos). No necesitan "pensar por su cuenta": basta con que **un** agente decida **cuándo** usar cada una y luego **integre** los resultados en una recomendación. Un sistema multiagente agregaría complejidad y costo sin mejorar el resultado.
 
 ---
 
@@ -158,6 +183,7 @@ Si en el futuro se quisieran datos reales, solo se modifica `datos.py`. **Las he
 
 - Usa `agente.stream(..., stream_mode="updates")` para recibir **cada paso** del grafo en cuanto ocurre y lo muestra en la **bitácora del agente**: una fila por herramienta con su resultado resumido, por ejemplo "16 ofertas · 4 tiendas" o "desde $499".
 - Guarda el JSON de cada herramienta y con él dibuja las métricas de precio, una **etiqueta por producto** (precio más bajo, tiendas, score y opiniones) y los usuarios relevantes.
-- La respuesta del LLM se divide por sus títulos (`## ...`). La sección "Recomendación final" va en el recuadro **Veredicto** y "Opinión de los compradores" en su propia sección. El producto que la recomendación menciona primero se marca como **Recomendado**.
+- La respuesta del LLM se divide por sus títulos (`## ...`). La sección "Recomendación final" va en el recuadro **Veredicto**, y los pros y contras de "Opinión de los compradores" se muestran como chips en la sección **Calificaciones**, con corazones y una barra según el score. El producto que la recomendación menciona primero se marca como **Recomendado**.
+- Si la herramienta 5 guardó en MySQL, aparece el aviso **"Guardado en MySQL"** con el número de filas, la tabla y la fecha.
 - **Diseño "cute":** todo el estilo está en `estilos.css`, separado del código, y `app.py` lo inyecta en la página. Usa colores pastel (rosa, lila, menta y mantequilla), bordes redondeados, fondo de puntitos, tipografías Fredoka y Nunito, y una mascota (un gatito con lupa dibujado en SVG). El tema base está en `.streamlit/config.toml`. Se ocultan el menú y la barra de Streamlit para que se vea como una página propia.
 - `@st.cache_resource` construye el agente una sola vez, y `st.session_state` conserva los resultados entre recargas de la página.

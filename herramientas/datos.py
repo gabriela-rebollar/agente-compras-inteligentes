@@ -2,7 +2,7 @@
 herramientas/datos.py
 =====================
 PAPEL EN EL SISTEMA:
-    Es la "fuente de datos" que comparten las 4 herramientas del agente.
+    Es la "fuente de datos" que comparten las 5 herramientas del agente.
 
     Funciona en DOS niveles:
         1. CATALOGO: primero busca en data/productos_mock.json (33 productos
@@ -12,7 +12,7 @@ PAPEL EN EL SISTEMA:
            puede buscar CUALQUIER cosa.
 
     Los productos estimados se guardan en data/productos_generados.json.
-    ¿Por que? Porque las 4 herramientas consultan los datos por separado:
+    ¿Por que? Porque las 5 herramientas consultan los datos por separado:
     si cada una generara datos nuevos, verian productos distintos. Guardandolos,
     todas trabajan con exactamente la misma informacion (y la siguiente vez
     que se busque lo mismo, la respuesta es inmediata).
@@ -168,7 +168,7 @@ def agregar_datos_reales(productos: list[dict]) -> list[dict]:
 
     Los resultados se guardan por dia en data/datos_reales.json para no gastar
     consultas (el plan gratuito de SerpAPI tiene un limite mensual) y para que
-    las 4 herramientas vean exactamente los mismos datos.
+    las 5 herramientas vean exactamente los mismos datos.
     """
     from datetime import date
 
@@ -201,7 +201,7 @@ def agregar_datos_reales(productos: list[dict]) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Funcion que usan las 4 herramientas
+# Funcion que usan las 5 herramientas
 # ---------------------------------------------------------------------------
 def buscar_coincidencias(consulta: str) -> list[dict]:
     """

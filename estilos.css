@@ -191,6 +191,13 @@ button[kind="tertiary"]:hover { background: var(--rosa-claro) !important; border
 .chips .pro::before { content: "+"; background: #5FBF98; }
 .chips .contra::before { content: "−"; background: var(--rosa); }
 
+/* Aviso de guardado en MySQL */
+.guardado { display: flex; align-items: center; gap: 12px; margin-top: 22px; background: var(--menta-claro);
+            border: 2.5px dashed var(--menta); border-radius: 20px; padding: 10px 18px; }
+.guardado b { display: block; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1rem; }
+.guardado span { font-size: 0.85rem; font-weight: 600; color: var(--suave); }
+.guardado code { background: var(--tarjeta); border-radius: 6px; padding: 1px 6px; color: #2F7A5B; font-size: 0.82rem; }
+
 /* Insignia de precios reales y links a videos */
 .etiqueta-veredicto.real { background: var(--menta-claro); color: #2F7A5B; margin-left: 8px; }
 .persona a.video { display: block; color: var(--texto); text-decoration: none; font-weight: 600; }

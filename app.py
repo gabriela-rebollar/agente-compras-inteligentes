@@ -42,6 +42,7 @@ NOMBRES_HERRAMIENTAS = {
     "comparar_precios": "Comparador de precios",
     "analizar_resenas": "Analista de reseñas",
     "buscar_usuarios_relevantes": "Analista de usuarios relevantes",
+    "guardar_resultados": "Guardar en MySQL",
 }
 
 # Colores (fondo, letra) de la etiqueta de cada tienda: version pastel de su color de marca.
@@ -123,6 +124,14 @@ ICONOS = {
         + _carita(26, 38, 32)
         + '<path d="M54 8 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6z" fill="#F27BA6"/>'
         '<path d="M8 12 l1.2 3 3 1.2 -3 1.2 -1.2 3 -1.2 -3 -3 -1.2 3 -1.2z" fill="#CDB8F5"/></svg>'
+    ),
+    # Base de datos con carita (aviso de guardado en MySQL)
+    "base": (
+        '<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">'
+        f'<path d="M8 10 v20 c0 6 24 6 24 0 v-20" fill="#E3F7EE" {_TRAZO}/>'
+        f'<ellipse cx="20" cy="10" rx="12" ry="5" fill="#FFFFFF" {_TRAZO}/>'
+        '<circle cx="16" cy="22" r="1.8" fill="#4A2C40"/><circle cx="24" cy="22" r="1.8" fill="#4A2C40"/>'
+        '<path d="M18 26 q2 2 4 0" fill="none" stroke="#4A2C40" stroke-width="2" stroke-linecap="round"/></svg>'
     ),
     # Huellita para la bitacora del agente
     "huella": (
@@ -261,6 +270,10 @@ def resumen_de_paso(nombre: str, datos: dict) -> str:
     if nombre == "buscar_usuarios_relevantes":
         total = sum(len(u["personalidades"]) for u in datos.get("usuarios_relevantes", []))
         return f"{total} menciones"
+    if nombre == "guardar_resultados":
+        if datos.get("guardado"):
+            return f"{datos['filas_insertadas']} filas guardadas"
+        return "MySQL no disponible"
     return "listo"
 
 
@@ -437,6 +450,15 @@ def mostrar_resultados(datos: dict) -> None:
             + f'<div class="ofertas">{filas}</div>{detalle}</div>'
         )
     html_bloque(f'<div class="rejilla">{"".join(tarjetas)}</div>')
+
+    # ---- Aviso de guardado en la base de datos (herramienta 5) ----
+    guardado = resultados.get("guardar_resultados", {})
+    if guardado.get("guardado"):
+        html_bloque(
+            f'<div class="guardado">{ICONOS["base"]}<div><b>Guardado en MySQL</b>'
+            f'<span>{guardado["filas_insertadas"]} precios en <code>{e(guardado["base_de_datos"])}.resultados</code>'
+            f' · {e(guardado["fecha_consulta"])}</span></div></div>'
+        )
 
     # ---- Calificaciones (grafico de corazones + pros y contras) ----
     opiniones_llm = buscar_seccion(secciones, "opinion")

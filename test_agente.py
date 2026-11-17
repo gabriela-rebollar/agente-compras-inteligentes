@@ -5,7 +5,7 @@ PAPEL EN EL SISTEMA:
     Script sencillo para probar el proyecto desde la terminal, SIN el front end.
 
     Hace dos pruebas:
-        1. Prueba de herramientas: ejecuta las 4 herramientas directamente.
+        1. Prueba de herramientas: ejecuta las 5 herramientas directamente.
            Con productos del catalogo no necesita LLM ni internet; con otros
            productos usa el LLM para estimar los datos.
         2. Prueba del agente completo: el LLM decide que herramientas usar y
