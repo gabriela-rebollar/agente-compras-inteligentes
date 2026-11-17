@@ -44,7 +44,20 @@ def crear_llm():
         from langchain_groq import ChatGroq
 
         modelo = os.getenv("MODELO_GROQ", "openai/gpt-oss-120b")
-        return ChatGroq(model=modelo, temperature=0)
+        opciones = {}
+        if "gpt-oss" in modelo:
+            # Los modelos gpt-oss "piensan" antes de responder y esos tokens tambien
+            # cuentan para el limite gratuito; con "low" piensan menos (suficiente aqui).
+            opciones["reasoning_effort"] = "low"
+        return ChatGroq(
+            model=modelo,
+            temperature=0,
+            # El plan gratuito de Groq limita los tokens por minuto. Si se llega al
+            # limite (error 429), el cliente ESPERA lo que Groq indica y reintenta,
+            # en lugar de mostrar un error al usuario.
+            max_retries=6,
+            **opciones,
+        )
 
     if proveedor == "ollama":
         from langchain_ollama import ChatOllama

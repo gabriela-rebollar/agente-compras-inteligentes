@@ -1,0 +1,8 @@
+# Claves privadas: NUNCA se suben
+.env
+# Entorno virtual (se crea con pip install -r requirements.txt)
+.venv/
+__pycache__/
+# Archivos que el programa genera solo (cache)
+data/datos_reales.json
+data/productos_generados.json

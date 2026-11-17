@@ -339,10 +339,15 @@ def ejecutar_agente(consulta: str) -> dict:
             elif nodo == "herramientas":
                 # ACTUAR + OBSERVAR: llego el resultado de la herramienta.
                 for mensaje in salida["messages"]:
-                    try:
-                        datos = json.loads(mensaje.content)
-                    except json.JSONDecodeError:
-                        datos = {}
+                    # Si la herramienta mando datos extra para la pagina (artifact,
+                    # p. ej. los links del buscador), se usan esos; si no, el contenido.
+                    if isinstance(getattr(mensaje, "artifact", None), dict):
+                        datos = mensaje.artifact
+                    else:
+                        try:
+                            datos = json.loads(mensaje.content)
+                        except json.JSONDecodeError:
+                            datos = {}
                     resultados[mensaje.name] = datos
                     for p in pasos:
                         if p.get("herramienta") == mensaje.name and p["clase"] == "activo":

@@ -27,45 +27,31 @@ from llm import crear_llm
 # ---------------------------------------------------------------------------
 # Instrucciones del sistema: le explican al LLM QUIEN es y COMO debe trabajar.
 # ---------------------------------------------------------------------------
-INSTRUCCIONES = """Eres un agente de compras inteligentes para usuarios en Mexico.
-Tu objetivo es ayudar al usuario a decidir que producto comprar.
+# Se mantienen cortas a proposito: se envian en CADA llamada al LLM, y el plan
+# gratuito de Groq limita los tokens por minuto.
+INSTRUCCIONES = """Eres un agente de compras para usuarios en Mexico (precios en MXN).
+Ayuda al usuario a decidir que producto comprar.
 
-Para cada consulta usa tus 5 herramientas, en este orden:
-1. buscar_productos           -> para conocer las opciones en cada tienda.
-2. comparar_precios           -> para obtener el precio final, el promedio y el rango.
-3. analizar_resenas           -> para conocer el score y las opiniones de compradores.
-4. buscar_usuarios_relevantes -> para saber que personalidades usan el producto.
-5. guardar_resultados         -> para guardar los precios en la base de datos MySQL.
-Pasa a las 5 herramientas EXACTAMENTE el mismo texto que escribio el usuario
-(por ejemplo "audifonos inalambricos"), sin cambiarle palabras.
+Usa SIEMPRE tus 5 herramientas, con el texto EXACTO del usuario como consulta:
+buscar_productos, comparar_precios, analizar_resenas, buscar_usuarios_relevantes
+y guardar_resultados (guarda los precios en MySQL; nunca la omitas).
+Son independientes: si puedes, llamalas todas en el mismo mensaje.
 
-Cuando ya tengas los resultados de las 5 herramientas, responde en español con este formato
-(sin tablas, frases cortas y directas):
-
+Despues responde en español, sin tablas, con frases cortas:
 ## Comparacion de precios
-(precio final mas bajo, en que tienda, promedio y rango)
-
+(precio mas bajo y tienda, promedio y rango)
 ## Opinion de los compradores
-(una linea por producto con este formato exacto: **Producto (score/10):** pro, pro; contra, contra
- Ejemplo: **Ninja Air Fryer AF101 3.8L (9.4/10):** papas crujientes, fácil de limpiar; capacidad pequeña
- Frases de 2 a 5 palabras, sin escribir "gusta" ni "no gusta". Si no hay contras, no pongas ';'.)
-
+(una linea por producto: **Producto (score/10):** pro, pro; contra, contra
+ frases de 2 a 5 palabras; si no hay contras, sin ';')
 ## Usuarios relevantes
-(que personalidades lo usan o recomiendan)
-
+(quien lo usa o recomienda; si "real": true, es un creador de YouTube que lo reseño)
 ## Recomendacion final
-(2 o 3 parrafos cortos: QUE producto conviene comprar, EN QUE tienda y POR QUE,
-equilibrando precio y score. Si aplica, menciona una alternativa mas barata o una premium.)
+(2 o 3 parrafos: QUE comprar, DONDE y POR QUE, equilibrando precio y score;
+ menciona una alternativa mas barata o premium si aplica)
 
-Reglas:
-- Usa solo los datos que te den las herramientas. No inventes precios ni reseñas.
-- Si las herramientas indican "origen": "real", los precios son reales de hoy (Google Shopping).
-  Si indican "origen": "estimado", aclara en una frase corta que los precios son aproximados.
-- En "Usuarios relevantes", si una persona tiene "real": true, es un creador real que reseño
-  el producto en YouTube: di que lo reseñó (no que lo compró).
-- Si las herramientas no encuentran el producto, dilo y sugiere buscar otra cosa.
-- Los precios estan en pesos mexicanos (MXN).
-- No menciones la base de datos en la respuesta; la pagina ya muestra si se guardo."""
+Reglas: usa solo los datos de las herramientas, no inventes. Si "origen" es "estimado",
+aclara que los precios son aproximados. Si no hay productos, dilo y sugiere otra busqueda.
+No menciones la base de datos en la respuesta."""
 
 # Numero maximo de pasos del grafo, para evitar ciclos infinitos si el LLM se confunde.
 LIMITE_DE_PASOS = 20
